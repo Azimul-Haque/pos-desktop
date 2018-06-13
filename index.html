@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="css/materialize-icon.css" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+      <div class="container-fluid">
+        <div class="row">
+            <div class="col s12 m4">
+                    <table class="highlight" id="receipttable">
+                            <thead>
+                              <tr>
+                                  <th>Item Name</th>
+                                  <th>Item Qty</th>
+                                  <th>Item Price</th>
+                              </tr>
+                            </thead>
+                    
+                            <tbody>
+                              <tr>
+                                <td>Eclair</td>
+                                <td>1</td>
+                                <td>$0.87</td>
+                              </tr>
+                              <tr>
+                                <td>Jellybean</td>
+                                <td>1</td>
+                                <td>$3.76</td>
+                              </tr>
+                              </tr>
+                              <tr>
+                                <td>Jellybean</td>
+                                <td>1</td>
+                                <td>$3.76</td>
+                              </tr>
+                              <tr>
+                                <td>Lollipop</td>
+                                <td>2</td>
+                                <td>$7.00 <a class="waves-effect waves-light btn" href="#">x</a></td>
+                              </tr>
+                            </tbody>
+                            <tfoot>
+                              <tr>
+                                <td></td>
+                                <td>Total:</td>
+                                <td>$40.00</td>
+                              </tr>
+                            </tfoot>
+                          </table><br>
+                <a class="waves-effect waves-light btn" id="printreceipt"><i class="material-icons left">print</i>Print</a>
+                <div class="" id="progress">
+                    <div class="indeterminate"></div>
+                </div>
+            </div>
+            <div class="col s12 m8">
+              <div class="well">
+                  <div class="card blue-grey lighten-2">
+                      <div class="card-content white-text">
+                        <span class="card-title">Items</span>
+                        <div class="row" id="itemsinhomepage">
+                        </div>
+                        <span id="testItem"></span>
+                      </div>
+                    </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <!--JavaScript at end of body for optimized loading-->
+      <!-- Insert this line above script imports  -->
+      <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+      <script type="text/javascript" src="js/jquery.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script type="text/javascript" src="js/print.js"></script>
+      <script type="text/javascript" src="js/homepage.js"></script>
+
+      <!-- Insert this line after script imports -->
+      <script>if (window.module) module = window.module;</script>
+    
+      <script type="text/javascript">
+          $(document).ready(function(){
+                $("#printreceipt").click(function(){
+                    $("#receipttable").print({
+                            globalStyles: true,
+                            mediaPrint: false,
+                            stylesheet: null,
+                            noPrintSelector: ".no-print",
+                            iframe: true,
+                            append: null,
+                            prepend: null,
+                            manuallyCopyFormValues: true,
+                            deferred: $.Deferred(),
+                            timeout: 750,
+                            title: null,
+                            doctype: '<!doctype html>'
+                    });
+                    $("#progress").addClass("progress");
+                    setTimeout(function(){
+                        $("#progress").removeClass("progress");
+                    }, 3000);
+                });
+            });
+      </script>
+      <script type="text/javascript">
+        var remote = require('electron').remote;
+        document.addEventListener('keydown', function (e) {
+          if (e.which === 123) {
+            remote.getCurrentWindow().webContents.openDevTools();
+          } else if (e.which === 116) {
+            location.reload();
+          }
+        });
+      </script>
+    </body>
+  </html>

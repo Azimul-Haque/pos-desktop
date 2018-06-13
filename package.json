@@ -1,0 +1,17 @@
+{
+  "name": "pos",
+  "version": "1.0.0",
+  "description": "This is a POS Software for a Restaurant",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Orbachin Ujbuk",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^2.0.2"
+  },
+  "dependencies": {
+    "nedb": "^1.8.0"
+  }
+}
