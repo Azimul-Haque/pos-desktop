@@ -17,9 +17,17 @@ function populateTable() {
 
     // Fill the table content
     document.getElementById('itemsinhomepage').innerHTML = itemsButtonGroupBody;
+    
   });
 }
 
+
+
+
 function findItem(id) {
     database.findItem(id);
+}
+
+function findItemPrice(id) {
+    database.findItemPrice(id);
 }

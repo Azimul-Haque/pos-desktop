@@ -42,8 +42,8 @@ function createWindow () {
 
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 1000,
-    height: 625
+    width: 1200,
+    height: 700
   })
 
   // Load the index.html file
