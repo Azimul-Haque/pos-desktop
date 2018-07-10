@@ -11,13 +11,26 @@
         td { 
             padding: 3px !important;
         }
+        #toast-container {
+          top: auto !important;
+          right: auto !important;
+          bottom: 10%;
+          left: 7%;
+        }
       </style>
     </head>
 
     <body>
-      <div class="container-fluid">
+      <div class="container-fluid" id="homepage">
         <div class="row">
             <div class="col s12 m4">
+              <div>
+                <h5><b>Restaurant</b>ABC <span id="headerOnline" style="font-size: 14px !important;"></span></h5>
+                <p id="headerDate"></p>
+                <script>
+                document.getElementById("headerDate").innerHTML = new Date().toDateString();
+                </script>
+              </div>
                     <table class="highlight table table-condensed" id="receipttable">
                             <thead>
                               <tr>
@@ -70,7 +83,7 @@
                                 }
                             }
                           </script>
-                <a class="waves-effect waves-light btn" id="printreceipt"><i class="material-icons left">print</i>Print</a>
+                <a class="waves-effect waves-light btn" id="printreceipt"><i class="material-icons left">print</i>Save & Print</a>
                 <div class="" id="progress">
                     <div class="indeterminate"></div>
                 </div>
@@ -86,6 +99,10 @@
                       </div>
                     </div>
               </div>
+              <div style="float: right;" id="isOnline"></div>
+              <div class="" id="progressSync">
+                <div class="indeterminate"></div>
+              </div>
             </div>
         </div>
       </div>
@@ -99,30 +116,45 @@
 
       <!-- Insert this line after script imports -->
       <script>if (window.module) module = window.module;</script>
-    
-      <script type="text/javascript">
-          $(document).ready(function(){
-                $("#printreceipt").click(function(){
-                    $("#receipttable").print({
-                            globalStyles: false,
-                            mediaPrint: false,
-                            stylesheet: null,
-                            noPrintSelector: ".no-print",
-                            iframe: true,
-                            append: null,
-                            prepend: null,
-                            manuallyCopyFormValues: true,
-                            deferred: $.Deferred(),
-                            timeout: 750,
-                            title: null,
-                            doctype: '<!doctype html>'
-                    });
-                    $("#progress").addClass("progress");
-                    setTimeout(function(){
-                        $("#progress").removeClass("progress");
-                    }, 3000);
-                });
+      <script>
+      $(document).ready(function(){
+        $("#printreceipt").click(function(){
+          var itemsArrayforRD = [];
+          $(".itemJson").each(function(){
+              var itemDataArray = $(this).val().split(',');
+              var itemData = {name: itemDataArray[0], qty: itemDataArray[1], price: itemDataArray[2]};
+              itemsArrayforRD.push(itemData);
+          });
+          totalPriceforRD = parseInt($("#totalPrice").html());
+          if(isNaN(totalPriceforRD)) {
+            M.toast({html: 'Select an Item first!'});
+          } else {
+            var receiptData = {
+                              "items":itemsArrayforRD
+                              }
+            console.log(receiptData);
+            $("#testItem").html(JSON.stringify(receiptData));
+            $("#receipttable").print({
+                    globalStyles: false,
+                    mediaPrint: false,
+                    stylesheet: null,
+                    noPrintSelector: ".no-print",
+                    iframe: true,
+                    append: null,
+                    prepend: null,
+                    manuallyCopyFormValues: true,
+                    deferred: $.Deferred(),
+                    timeout: 750,
+                    title: null,
+                    doctype: '<!doctype html>'
             });
+            $("#progress").addClass("progress");
+            database.addReceipt(receiptData, totalPriceforRD);
+            M.toast({html: 'Added data to the database!'})
+            setTimeout(function(){ location.reload(); }, 1000);
+          }
+      });
+    });
       </script>
       <script type="text/javascript">
         var remote = require('electron').remote;
@@ -135,7 +167,7 @@
         });
       </script>
       <script>
-      function incrItemPrice(qty, price) {
+      function incrItemPrice(qty, price, name) {
         var newqty = document.getElementById('qty'+qty).value;
         var oldPrice = document.getElementById('price'+qty).innerHTML;
         if(newqty == '') {
@@ -146,6 +178,7 @@
         price = parseInt(price);
         var newPrice = price * newqty;
         document.getElementById('price'+qty).innerHTML = newPrice;
+        document.getElementById('priceJson'+qty).value = name + "," + newqty + "," + newPrice;
 
         // update the price
         var totalPrice = parseInt($("#totalPrice").text());
@@ -165,6 +198,34 @@
         $("#totalPriceFinal").text(newTotalPrice);
       });
       </script>
+      <script>
+        function updateIndicator() {
+          if(navigator.onLine) {
+            $("#isOnline").html("<a class='btn-floating btn-large waves-effect waves-light green' onclick='syncdata()' title='Sync now!'><i class='material-icons'>sync</i></a>");
+            $("#headerOnline").html("(Online)");
+            var audio = new Audio('sound/online.mp3');
+            //audio.play();
+            M.toast({html: 'Online!', classes: 'rounded'});
+          } else {
+            $("#isOnline").html("<a class='btn-floating btn-large waves-effect waves-light grey readonly' title='Offline!'><i class='material-icons'>signal_wifi_off</i></a>");
+            $("#headerOnline").html("(Offline)");
+          }
+        }
+        function syncdata() {
+          getDataToSync();
+          //console.log(dataToSync);
+          
+          $("#progressSync").addClass("progress");
+          setTimeout(function(){
+              $("#progressSync").removeClass("progress");
+          }, 3000);
+        }
+        $(document).ready(function(){
+          window.addEventListener('online',  updateIndicator);
+          window.addEventListener('offline', updateIndicator);
+          updateIndicator();          
+        });
+    </script>
       
     </body>
   </html>

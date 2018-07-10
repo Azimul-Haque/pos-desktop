@@ -1,7 +1,7 @@
-const electron = require('electron')
-const {app, BrowserWindow, Menu} = electron
-const path = require('path')
-const url = require('url')
+const electron = require('electron');
+const {app, BrowserWindow, Menu} = electron;
+const path = require('path');
+const url = require('url');
 
 // Template for the Menu
 menuTemplate = [
@@ -32,6 +32,12 @@ menuTemplate = [
         }
       }
     ]
+  },
+	{
+    label: 'Receipts',
+    click: () => {
+      openReceiptPage()
+    }
   }
 ]
 
@@ -39,11 +45,11 @@ menuTemplate = [
 let mainWindow
 
 function createWindow () {
-
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 1200,
-    height: 700
+    height: 700,
+		icon: path.join(__dirname, 'assets/icon/icon.png')
   })
 
   // Load the index.html file
@@ -52,7 +58,7 @@ function createWindow () {
     protocol: 'file:',
     slashes: true
   }))
-
+  
   // Set up the menu
   var menu = Menu.buildFromTemplate(menuTemplate)
   mainWindow.setMenu(menu)
@@ -80,7 +86,7 @@ function openAboutWindow() {
   }))
   aboutWindow.setMenu(null)
   aboutWindow.once('ready-to-show', () => {
-    aboutWindow.show()
+  aboutWindow.show()
   })
 }
 // Opens the add item window
@@ -101,6 +107,26 @@ function addItem() {
   aboutWindow.setMenu(null)
   aboutWindow.once('ready-to-show', () => {
     aboutWindow.show()
+  })
+}
+
+
+function openReceiptPage() {
+  let receiptWindow = new BrowserWindow({
+    parent: mainWindow,
+    modal: true,
+    show: false,
+    width: 1100,
+    height: 550
+  })
+  receiptWindow.loadURL(url.format({
+    pathname: path.join(__dirname, 'receipt.html'),
+    protocol: 'file:',
+    slashes: true
+  }))
+  receiptWindow.setMenu(null)
+  receiptWindow.once('ready-to-show', () => {
+    receiptWindow.show()
   })
 }
 
@@ -128,3 +154,4 @@ app.on('activate', () => {
     createWindow()
   }
 })
+

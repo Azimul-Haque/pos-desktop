@@ -9,7 +9,8 @@
   "author": "Orbachin Ujbuk",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^2.0.2"
+    "electron": "^2.0.2",
+    "electron-packager": "^12.1.0"
   },
   "dependencies": {
     "nedb": "^1.8.0"

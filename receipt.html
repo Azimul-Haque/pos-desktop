@@ -1,0 +1,59 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Add Item</title>
+  <!--Import Google Icon Font-->
+  <link href="css/materialize-icon.css" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+  <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script type="text/javascript" src="js/dateformat.js"></script>
+  <script type="text/javascript" src="js/receipt.js"></script>
+  <script>if (window.module) module = window.module;</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    td { 
+        padding: 3px !important;
+    }
+  </style>
+</head>
+<body bgcolor="#e0f2f1">
+  <div class="">
+    <div class="row">
+        <div class="col s12 m6">
+            <h4>Todays Total Collection:</h3>
+            <h5><b>৳ <span id="todaysCollection">0.00</span></b></h5><br><br>
+            <table class="" id="receipttable"></table>
+        </div>
+        <div class="col s12 m6">
+        <h4>Receipts:</h4>
+          <table class="">
+            <thead>
+              <tr>
+                <th>Receipt No</th>
+                <th>Total</th>
+                <th>Datetime</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="tablebody">
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    var remote = require('electron').remote;
+    document.addEventListener('keydown', function (e) {
+      if (e.which === 123) {
+        remote.getCurrentWindow().webContents.openDevTools();
+      } else if (e.which === 116) {
+        location.reload();
+      }
+    });
+  </script>
+
+</body>
+</html>
