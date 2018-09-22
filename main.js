@@ -75,8 +75,8 @@ function openAboutWindow() {
     parent: mainWindow,
     modal: true,
     show: false,
-    width: 400,
-		height: 200,
+    width: 600,
+		height: 350,
 		icon: path.join(__dirname, 'assets/icon/icon.png')
   })
   aboutWindow.loadURL(url.format({
