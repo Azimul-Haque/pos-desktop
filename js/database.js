@@ -34,7 +34,9 @@ exports.getItems = function(fnc) {
 exports.findItem = function(id) {
   itemdb.findOne({ _id: id }, function (err, doc) {
     var table = document.getElementById("dynamicItems");
+    var tableP = document.getElementById("dynamicItemsPrint");
     var row = table.insertRow(0);
+    var rowP = tableP.insertRow(0);
 
     if(document.getElementById(doc._id)) {
       var oldQty = document.getElementById('qty'+doc._id).value;
@@ -47,8 +49,10 @@ exports.findItem = function(id) {
 
       var newQty = oldQty + 1;
       document.getElementById('qty'+doc._id).value = newQty;
+      document.getElementById('qtyP'+doc._id).innerHTML = newQty;
       var newPrice = oldPrice + parseInt(doc.itemprice);
       document.getElementById('price'+doc._id).innerHTML = newPrice;
+      document.getElementById('priceP'+doc._id).innerHTML = newPrice;
       document.getElementById('priceJson'+doc._id).value = doc.itemname + "," + newQty + "," + newPrice;
     } else {
       var cell1 = row.insertCell(0);
@@ -56,10 +60,22 @@ exports.findItem = function(id) {
       var cell3 = row.insertCell(2);
       var cell4 = row.insertCell(3);
 
+      var cell1P = rowP.insertCell(0);
+      var cell2P = rowP.insertCell(1);
+      cell2P.className = "centeralign";
+      var cell3P = rowP.insertCell(2);
+      cell3P.className = "rightalign";
+
       cell1.innerHTML = "<span id='"+doc._id+"'>" + doc.itemname + "</span>";
+      cell1P.innerHTML = "<span id='P"+doc._id+"'>" + doc.itemname + "</span>";
+
       cell2.innerHTML = "<input type='number' min='1' value='1' id='qty"+doc._id+"' onchange='incrItemPrice(\"" + doc._id + "\",\"" + doc.itemprice + "\", \"" + doc.itemname + "\")' style='width: 35px !important; height: 20px !important;'>";
+      cell2P.innerHTML = "<span id='qtyP"+doc._id+"'>1</span>";
+      
       cell3.innerHTML = "<span id='price"+doc._id+"' class='classPrice'>"+ doc.itemprice +"</span><input type='hidden' id='priceJson"+doc._id+"' class='itemJson' value='"+doc.itemname+","+ 1 +","+doc.itemprice+"'>";
-      cell4.innerHTML = "<input type='button' value='x' onclick='deleteRow(this, \"" + doc._id + "\")' class='btn btn-small red accent-4 no-print' style='height:24px !important; width:24px !important; line-height: 24px; !important;padding: 0 0.1rem !important;'>";
+      cell3P.innerHTML = "<span id='priceP"+doc._id+"'>"+ doc.itemprice +"</span>";
+      
+      cell4.innerHTML = "<input type='button' value='x' onclick='deleteRow(this, \"" + doc._id + "\")' class='btn btn-small red accent-4 noPrint' style='height:24px !important; width:24px !important; line-height: 24px; !important;padding: 0 0.1rem !important;'>";
     }
     
     sumOfColumns();
@@ -72,6 +88,7 @@ function sumOfColumns(){
   $(".classPrice").each(function(){
       totalPrice += parseInt($(this).html());
       $("#totalPrice").html(totalPrice);
+      $("#totalPriceP").html(totalPrice);
   });
 }
 
@@ -111,12 +128,14 @@ function formatMonth(date) {
   return [month, year].join('-');
 }
 
-exports.addReceipt = function(receiptData, total) {
+exports.addReceipt = function(receiptno, receiptData, total, discount, discountedTotal) {
   // Create the receipt object
   var receipt = {
-    "receiptno": Date.now(),
+    "receiptno": receiptno,
     "receiptdata": receiptData,
     "total": total,
+    "discount": discount,
+    "discounted_total": discountedTotal,
     "created_at": Date.now(),
   };
 
@@ -132,7 +151,6 @@ exports.getReceipts = function(fnc) {
 
   // Get all receipts from the database
   receiptdb.find({}).sort({ created_at:  -1 }).exec(function(err, docs) {
-
     // Execute the parameter function
     fnc(docs);
   });

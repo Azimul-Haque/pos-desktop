@@ -30,8 +30,21 @@ function findItemPrice(id) {
 function getDataToSync() {
   database.getReceipts(function(receipts) {
     //console.log(JSON.stringify(receipts));
+    //console.log(receipts[0]['receiptdata']['items']);
+    // $.ajax({
+    //   url: "http://localhost/pos_api/syncapi_local.php",
+    //   type: "POST",
+    //   data: JSON.stringify(receipts),
+    //   success: function(response) {
+    //     console.log(response);
+    //     M.toast({html: JSON.parse(response).totalcreated + ' rows are synced locally!', classes: 'rounded'});
+    //   },
+    //   error: function(jqXHR, textStatus, errorThrown) {
+    //     console.log(textStatus, errorThrown);
+    //   }
+    // });
     $.ajax({
-      url: "http://localhost/pos_api/syncapi.php/",
+      url: "http://queenislandkitchen.com/pos_api/syncapi.php",
       type: "POST",
       data: JSON.stringify(receipts),
       success: function(response) {

@@ -1,0 +1,7 @@
+{
+  "dest": "dist/installers/",
+  "icon": "assets/icon/icon.ico",
+  "tags": [
+    "QIK"
+  ]
+}

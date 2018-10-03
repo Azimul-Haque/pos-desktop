@@ -2,6 +2,7 @@ const electron = require('electron');
 const {app, BrowserWindow, Menu} = electron;
 const path = require('path');
 const url = require('url');
+//process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 
 // Template for the Menu
 menuTemplate = [
@@ -47,10 +48,12 @@ let mainWindow
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 700,
-		icon: path.join(__dirname, 'assets/icon/icon.png')
+    icon: path.join(__dirname, 'assets/icon/icon.ico'),
+    titleBarStyle: 'customButtonsOnHover'
   })
+
+  // maximiaze the window
+  mainWindow.maximize()
 
   // Load the index.html file
   mainWindow.loadURL(url.format({
@@ -77,7 +80,7 @@ function openAboutWindow() {
     show: false,
     width: 600,
 		height: 350,
-		icon: path.join(__dirname, 'assets/icon/icon.png')
+    icon: path.join(__dirname, 'assets/icon/icon.ico')    
   })
   aboutWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'about.html'),
@@ -97,7 +100,8 @@ function addItem() {
     modal: true,
     show: false,
     width: 800,
-    height: 400
+    height: 400,
+    icon: path.join(__dirname, 'assets/icon/icon.ico'),
   })
   aboutWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'additem.html'),

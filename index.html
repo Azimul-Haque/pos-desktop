@@ -4,7 +4,9 @@
       <!--Import Google Icon Font-->
       <link href="css/materialize-icon.css" rel="stylesheet">
       <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <!-- <link type="text/css" rel="stylesheet" href="css/normalize.css"> -->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection">
+      <link type="text/css" rel="stylesheet" href="css/styles.css"  media="screen,projection">
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <style>
@@ -23,72 +25,122 @@
     <body>
       <div class="container-fluid" id="homepage">
         <div class="row">
-            <div class="col s12 m4">
+            <div class="col s12 m3" id="">
               <div>
-                <h5><b>Restaurant</b>ABC <span id="headerOnline" style="font-size: 14px !important;"></span></h5>
+                <h5><b>Queen Island</b> Kitchen <span id="headerOnline" class="noPrint" style="font-size: 14px !important;"></span></h5>
                 <p id="headerDate"></p>
                 <script>
                 document.getElementById("headerDate").innerHTML = new Date().toDateString();
                 </script>
               </div>
-                    <table class="highlight table table-condensed" id="receipttable">
-                            <thead>
-                              <tr>
-                                  <th>Item Name</th>
-                                  <th>Qty</th>
-                                  <th>Price</th>
-                                  <th></th>
-                              </tr>
-                            </thead>
-                    
-                            <tbody id="dynamicItems">
-                            </tbody>
-                            <tfoot id="receiptFoot">
-                              <tr>
-                                <td></td>
-                                <td>Discount:</td>
-                                <td><input type="number" id="discount" style="width:40px !important; height: 20px !important;" min="0">%</td>
-                                <td></td>
-                              </tr>
-                              <tr>
-                                <td></td>
-                                <td>Total:</td>
-                                <td id="totalPrice"></td>
-                                <td></td>
-                              </tr>
-                              </tr>
-                              <tr>
-                                <td></td>
-                                <td>Total Price:</td>
-                                <td id="totalPriceFinal"></td>
-                                <td></td>
-                              </tr>
-                            </tfoot>
-                          </table><br>
-                          <script>
-                            function deleteRow(r, id) {
-                                var j = r.parentNode.parentNode.rowIndex - 1;
-                                // dirst get the price then delete...
-                                itemPrice = parseInt(document.getElementById("price"+id).innerHTML);
-                                document.getElementById("dynamicItems").deleteRow(j);
+              <table class="highlight table table-condensed" id="receipttable">
+                      <thead>
+                        <tr>
+                            <th width="70%">Item</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                            <th class="noPrint"></th>
+                        </tr>
+                      </thead>
+              
+                      <tbody id="dynamicItems">
+                      </tbody>
+                      <tfoot id="receiptFoot">
+                        
+                        <tr>
+                          <td colspan="2" class="rightalign">Total:</td>
+                          <td id="totalPrice"></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2" class="rightalign">Discount:</td>
+                          <td><input type="number" id="discount" style="width:40px !important; height: 20px !important;" min="0"></td>
+                          <td>%</td>
+                        </tr>
+                        <tr>
+                          <td colspan="2" class="rightalign">Total Price:</td>
+                          <td id="totalPriceFinal"></td>
+                          <td></td>
+                        </tr>
+                      </tfoot>
+                    </table><br></br>
+                    <script>
+                      function deleteRow(r, id) {
+                          var j = r.parentNode.parentNode.rowIndex - 1;
+                          // dirst get the price then delete...
+                          itemPrice = parseInt(document.getElementById("price"+id).innerHTML);
+                          document.getElementById("dynamicItems").deleteRow(j);
+                          document.getElementById("dynamicItemsPrint").deleteRow(j);
 
-                                itemPrice = parseInt(itemPrice);
-                                console.log('Deleting: '+itemPrice);
-                                totalPrice = parseInt($("#totalPrice").text());
-                                totalPrice = totalPrice - itemPrice;
-                                $("#totalPrice").html(totalPrice);
-                                if ($('#dynamicItems > tr').length == 0){
-                                  totalPrice = 0;
-                                  $("#totalPrice").html(totalPrice);
-                                }
-                            }
-                          </script>
-                <a class="waves-effect waves-light btn" id="printreceipt"><i class="material-icons left">print</i>Save & Print</a>
+                          itemPrice = parseInt(itemPrice);
+                          console.log('Deleting: '+itemPrice);
+                          totalPrice = parseInt($("#totalPrice").text());
+                          totalPrice = totalPrice - itemPrice;
+                          $("#totalPrice").html(totalPrice);
+                          $("#totalPriceP").html(totalPrice);
+                          if ($('#dynamicItems > tr').length == 0){
+                            totalPrice = 0;
+                            $("#totalPrice").html(totalPrice);
+                            $("#totalPriceP").html(totalPrice);
+                          }
+                      }
+                    </script>
+                <a class="waves-effect waves-light btn noPrint" id="printreceipt"><i class="material-icons left">print</i>Save & Print</a>
                 <div class="" id="progress">
                     <div class="indeterminate"></div>
                 </div>
             </div>
-            <div class="col s12 m8">
+            <div class="col s12 m3">
+              <h6>Print Area</h6>           
+              <div style="border: 1px dotted black;">
+                <div class="receipt" id="printArea">
+                  <section class="sheet padding-10mm">
+                    <center>
+                      <span>Queen Island Kitchen</span><br>
+                    <span>Press Club, Bhola-8300</span><br>
+                    <span>Phone: 01733222111</span><br>
+                    <span>queenislandkitchen.com</span><br><br><br/>
+                    </center>
+                    <span>Receipt # <span id="receiptnoP"></span></span><br>
+                    <span id="dateTimeP"></span><br>
+                    <script>
+                      document.getElementById("dateTimeP").innerHTML = (new Date().toDateString()) + " | " + (new Date().toLocaleTimeString());
+                    </script>
+                    <table width="100%">
+                      <thead>
+                        <tr>
+                          <td>Item</td>
+                          <td>Qty</td>
+                          <td class="rightalign">Price</td>
+                        </tr>
+                      </thead>
+                      <tbody id="dynamicItemsPrint">
+                      </tbody>
+                      <tfoot id="receiptFoot">
+                        <tr>
+                          <td colspan="3" style="border-bottom: 1px dotted black;"></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2" class="rightalign">Total:</td>
+                          <td id="totalPriceP" class="rightalign"></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2" class="rightalign">Discount:</td>
+                          <td id="discountP" class="rightalign"></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2" class="rightalign">Total Price:</td>
+                          <td id="totalPriceFinalP" class="rightalign"></td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                    <br>
+                    <center>*** FEEL THE FOOD ***</center>
+                  </section>
+                </div>
+              </div>
+            </div>
+            <div class="col s12 m6">
               <div class="well">
                   <div class="card blue-grey lighten-2">
                       <div class="card-content white-text">
@@ -126,32 +178,40 @@
               itemsArrayforRD.push(itemData);
           });
           totalPriceforRD = parseInt($("#totalPrice").html());
+          discountforRD = parseInt($("#discount").val());
+          discountedTotal = totalPriceforRD - (totalPriceforRD * (discountforRD/100));
           if(isNaN(totalPriceforRD)) {
             M.toast({html: 'Select an Item first!'});
           } else {
-            var receiptData = {
-                              "items":itemsArrayforRD
-                              }
-            console.log(receiptData);
-            $("#testItem").html(JSON.stringify(receiptData));
-            $("#receipttable").print({
-                    globalStyles: false,
-                    mediaPrint: false,
-                    stylesheet: null,
-                    noPrintSelector: ".no-print",
-                    iframe: true,
-                    append: null,
-                    prepend: null,
-                    manuallyCopyFormValues: true,
-                    deferred: $.Deferred(),
-                    timeout: 750,
-                    title: null,
-                    doctype: '<!doctype html>'
-            });
-            $("#progress").addClass("progress");
-            database.addReceipt(receiptData, totalPriceforRD);
-            M.toast({html: 'Added data to the database!'})
-            setTimeout(function(){ location.reload(); }, 1000);
+            if(isNaN(discountforRD)) {
+            M.toast({html: 'Set a Discount! At least 0'});
+            } else {
+              var receiptno = Date.now();
+              var receiptData = {
+                                "items":itemsArrayforRD
+                                }
+              console.log(receiptData);
+              $("#receiptnoP").html(receiptno);
+              $("#testItem").html(JSON.stringify(receiptData));
+              $("#printArea").print({
+                      globalStyles: false,
+                      mediaPrint: false,
+                      stylesheet: 'css/styles.css',
+                      noPrintSelector: ".noPrint",
+                      iframe: true,
+                      append: null,
+                      prepend: null,
+                      manuallyCopyFormValues: true,
+                      deferred: $.Deferred(),
+                      timeout: 750,
+                      title: 'Test Rifat',
+                      doctype: '<!doctype html>'
+              });
+              $("#progress").addClass("progress");
+              database.addReceipt(receiptno,receiptData, totalPriceforRD, discountforRD, discountedTotal);
+              M.toast({html: 'Added data to the database!'})
+              setTimeout(function(){ location.reload(); }, 1000);
+            }
           }
       });
     });
@@ -169,6 +229,7 @@
       <script>
       function incrItemPrice(qty, price, name) {
         var newqty = document.getElementById('qty'+qty).value;
+        var newqtyP = document.getElementById('qtyP'+qty).value;
         var oldPrice = document.getElementById('price'+qty).innerHTML;
         if(newqty == '') {
           newqty = 0;
@@ -178,12 +239,15 @@
         price = parseInt(price);
         var newPrice = price * newqty;
         document.getElementById('price'+qty).innerHTML = newPrice;
+        document.getElementById('qtyP'+qty).innerHTML = newqty;
+        document.getElementById('priceP'+qty).innerHTML = newPrice;
         document.getElementById('priceJson'+qty).value = name + "," + newqty + "," + newPrice;
 
         // update the price
         var totalPrice = parseInt($("#totalPrice").text());
         totalPrice = totalPrice - oldPrice + newPrice;
         $("#totalPrice").html(totalPrice);
+        $("#totalPriceP").html(totalPrice);
         console.log(totalPrice);
       }
       </script>
@@ -196,6 +260,8 @@
         var newTotalPrice = totalPrice - (totalPrice * (discount/100));
         console.log(newTotalPrice);
         $("#totalPriceFinal").text(newTotalPrice);
+        $("#totalPriceFinalP").text(newTotalPrice);
+        $("#discountP").text(discount);
       });
       </script>
       <script>
