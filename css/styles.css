@@ -11,19 +11,19 @@
 } /* sheet size */
 /*.sheet { text-align: justify; text-justify: inter-word;  }*/
 @media print { 
-    .receipt { width: 58mm } 
+    .receipt { width: 80mm } 
 
     .noPrint, .no-print *
     {
         display: none !important;
     }
     #printArea {
-        width: 80mm; 
+        /* width: 80mm; 
         height: auto; 
         font-family: Courier; 
         font-size: 15px; 
         padding: 0px;
-        margin: 0px;
+        margin: 0px; */
     }
 }
 

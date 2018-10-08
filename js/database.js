@@ -4,12 +4,13 @@ itemdb = new Datastore({ filename: 'db/items.db', autoload: true });
 receiptdb = new Datastore({ filename: 'db/receipts.db', autoload: true });
 
 // Adds an item
-exports.addItem = function(itemname, itemprice) {
+exports.addItem = function(itemname, itemprice, itemdiscountable) {
 
   // Create the item object
   var item = {
     "itemname": itemname,
     "itemprice": itemprice,
+    "itemdiscountable": itemdiscountable,
     "created_at": Date.now(),
   };
 
@@ -37,6 +38,19 @@ exports.findItem = function(id) {
     var tableP = document.getElementById("dynamicItemsPrint");
     var row = table.insertRow(0);
     var rowP = tableP.insertRow(0);
+
+    var discountyes = parseInt($("#discountyes").text());
+    var discountno = parseInt($("#discountno").text());
+    
+    if(doc.itemdiscountable == 0) {
+      discountno = discountno + parseInt(doc.itemprice);
+      document.getElementById('discountno').innerHTML = discountno;
+    } else if(doc.itemdiscountable == 1) {
+      discountyes = discountyes + parseInt(doc.itemprice);
+      document.getElementById('discountyes').innerHTML = discountyes;
+    }
+    console.log(discountyes + discountno);
+
 
     if(document.getElementById(doc._id)) {
       var oldQty = document.getElementById('qty'+doc._id).value;
@@ -69,13 +83,13 @@ exports.findItem = function(id) {
       cell1.innerHTML = "<span id='"+doc._id+"'>" + doc.itemname + "</span>";
       cell1P.innerHTML = "<span id='P"+doc._id+"'>" + doc.itemname + "</span>";
 
-      cell2.innerHTML = "<input type='number' min='1' value='1' id='qty"+doc._id+"' onchange='incrItemPrice(\"" + doc._id + "\",\"" + doc.itemprice + "\", \"" + doc.itemname + "\")' style='width: 35px !important; height: 20px !important;'>";
+      cell2.innerHTML = "<input type='number' min='1' value='1' id='qty"+doc._id+"' onchange='incrItemPrice(\"" + doc._id + "\",\"" + doc.itemprice + "\", \"" + doc.itemname + "\", \"" + doc.itemdiscountable + "\")' style='width: 35px !important; height: 20px !important;'>";
       cell2P.innerHTML = "<span id='qtyP"+doc._id+"'>1</span>";
       
       cell3.innerHTML = "<span id='price"+doc._id+"' class='classPrice'>"+ doc.itemprice +"</span><input type='hidden' id='priceJson"+doc._id+"' class='itemJson' value='"+doc.itemname+","+ 1 +","+doc.itemprice+"'>";
       cell3P.innerHTML = "<span id='priceP"+doc._id+"'>"+ doc.itemprice +"</span>";
       
-      cell4.innerHTML = "<input type='button' value='x' onclick='deleteRow(this, \"" + doc._id + "\")' class='btn btn-small red accent-4 noPrint' style='height:24px !important; width:24px !important; line-height: 24px; !important;padding: 0 0.1rem !important;'>";
+      cell4.innerHTML = "<input type='button' value='x' onclick='deleteRow(this, \"" + doc._id + "\", \"" + doc.itemdiscountable + "\")' class='btn btn-small red accent-4 noPrint' style='height:24px !important; width:24px !important; line-height: 24px; !important;padding: 0 0.1rem !important;'>";
     }
     
     sumOfColumns();
@@ -90,6 +104,7 @@ function sumOfColumns(){
       $("#totalPrice").html(totalPrice);
       $("#totalPriceP").html(totalPrice);
   });
+  console.log(totalPrice);
 }
 
 // Edits an item
@@ -161,23 +176,18 @@ exports.findReceipt = function(receiptno) {
   receiptdb.findOne({ receiptno: receiptno }, function (err, doc) {
     console.log(doc.receiptdata);
     console.log(doc.receiptdata.items.length);
-    receipttable += '<tr>';
-    receipttable += '  <th>Name</th>';
-    receipttable += '  <th>Qty</th>';
-    receipttable += '  <th>Price</th>';
-    receipttable += '</tr>';
     for(i = 0; i < doc.receiptdata.items.length; i++) {
       receipttable += '<tr>';
       receipttable += '  <td>' + doc.receiptdata.items[i].name + '</td>';
       receipttable += '  <td>' + doc.receiptdata.items[i].qty + '</td>';
-      receipttable += '  <td>৳ ' + doc.receiptdata.items[i].price + '</td>';
+      receipttable += '  <td class="rightalign">' + doc.receiptdata.items[i].price + '</td>';
       receipttable += '</tr>';
     }
-    receipttable += '<tr>';
-      receipttable += '  <td></td>';
-      receipttable += '  <td><b>Total Price</b></td>';
-      receipttable += '  <td><b>৳ ' + doc.total + '</b></td>';
-    receipttable += '</tr>';
+    document.getElementById('receiptnoRP').innerHTML = doc.receiptno;
+    document.getElementById('totalPriceRP').innerHTML = doc.total;
+    document.getElementById('discountRP').innerHTML = doc.discount;
+    document.getElementById('totalPriceFinalRP').innerHTML = doc.discounted_total;
+
     document.getElementById('receipttable').innerHTML = receipttable;
   });
 }

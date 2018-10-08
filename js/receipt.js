@@ -18,6 +18,8 @@ function populateTable() {
       tableBody += '<tr>';
       tableBody += '  <td>' + receipts[i].receiptno + '</td>';
       tableBody += '  <td>৳ ' + receipts[i].total + '</td>';
+      tableBody += '  <td> ' + receipts[i].discount + '%</td>';
+      tableBody += '  <td>৳ ' + receipts[i].discounted_total + '</td>';
       tableBody += '  <td>' + dateTime + '</td>';
       tableBody += '  <td><a class="waves-effect waves-light btn btn-small" onclick="showDetailedReceipt(' + receipts[i].receiptno + ')"><i class="material-icons">view_list</i></a>';
       tableBody += '  <a class="btn btn-small disabled" onclick="#"><i class="material-icons">delete</i></a></td>';

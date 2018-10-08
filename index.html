@@ -9,6 +9,7 @@
       <link type="text/css" rel="stylesheet" href="css/styles.css"  media="screen,projection">
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <script type="text/javascript" src="js/dateformat.js"></script>
       <style>
         td { 
             padding: 3px !important;
@@ -64,10 +65,12 @@
                         </tr>
                       </tfoot>
                     </table><br></br>
+                    Discountable Price: <span id="discountyes">0</span><br/>
+                    Not Discountable Price: <span id="discountno">0</span>
                     <script>
-                      function deleteRow(r, id) {
+                      function deleteRow(r, id, discountable) {
                           var j = r.parentNode.parentNode.rowIndex - 1;
-                          // dirst get the price then delete...
+                          // first get the price then delete...
                           itemPrice = parseInt(document.getElementById("price"+id).innerHTML);
                           document.getElementById("dynamicItems").deleteRow(j);
                           document.getElementById("dynamicItemsPrint").deleteRow(j);
@@ -83,6 +86,19 @@
                             $("#totalPrice").html(totalPrice);
                             $("#totalPriceP").html(totalPrice);
                           }
+                          console.log(totalPrice);
+
+                          // update the discountable
+                          var discountyesid = parseInt($("#discountyes").text());
+                          var discountnoid = parseInt($("#discountno").text());
+                          if(discountable == 0) {
+                            discountnoid = discountnoid - itemPrice;
+                            $("#discountno").html(discountnoid);
+                          } else if(discountable == 1) {
+                            discountyesid = discountyesid - itemPrice;
+                            $("#discountyes").html(discountyesid);
+                          }
+                          console.log(discountnoid + discountyesid);
                       }
                     </script>
                 <a class="waves-effect waves-light btn noPrint" id="printreceipt"><i class="material-icons left">print</i>Save & Print</a>
@@ -96,15 +112,17 @@
                 <div class="receipt" id="printArea">
                   <section class="sheet padding-10mm">
                     <center>
+                      <img src="assets/icon/icon.png" style="width: 50px; height: auto;"><br>
                       <span>Queen Island Kitchen</span><br>
-                    <span>Press Club, Bhola-8300</span><br>
-                    <span>Phone: 01733222111</span><br>
-                    <span>queenislandkitchen.com</span><br><br><br/>
+                      <span>Press Club, Bhola-8300</span><br>
+                      <span>Phone: 01704-828518</span><br>
+                      <span>queenislandkitchen.com</span><br>
                     </center>
+                    <span style="border: 1px dotted #000000; margin: 5px; float: right;width: 30mm;">QTY:</span><br><br><br/>
                     <span>Receipt # <span id="receiptnoP"></span></span><br>
                     <span id="dateTimeP"></span><br>
                     <script>
-                      document.getElementById("dateTimeP").innerHTML = (new Date().toDateString()) + " | " + (new Date().toLocaleTimeString());
+                      document.getElementById("dateTimeP").innerHTML = dateTime = dateFormat(new Date(), "mmmm dd, yyyy, HH:MM TT");;
                     </script>
                     <table width="100%">
                       <thead>
@@ -125,7 +143,7 @@
                           <td id="totalPriceP" class="rightalign"></td>
                         </tr>
                         <tr>
-                          <td colspan="2" class="rightalign">Discount:</td>
+                          <td colspan="2" class="rightalign">Discount(%):</td>
                           <td id="discountP" class="rightalign"></td>
                         </tr>
                         <tr>
@@ -213,8 +231,8 @@
               setTimeout(function(){ location.reload(); }, 1000);
             }
           }
+        });
       });
-    });
       </script>
       <script type="text/javascript">
         var remote = require('electron').remote;
@@ -227,7 +245,7 @@
         });
       </script>
       <script>
-      function incrItemPrice(qty, price, name) {
+      function incrItemPrice(qty, price, name, discountable) {
         var newqty = document.getElementById('qty'+qty).value;
         var newqtyP = document.getElementById('qtyP'+qty).value;
         var oldPrice = document.getElementById('price'+qty).innerHTML;
@@ -249,6 +267,18 @@
         $("#totalPrice").html(totalPrice);
         $("#totalPriceP").html(totalPrice);
         console.log(totalPrice);
+
+        // update the discountable
+        var discountyesid = parseInt($("#discountyes").text());
+        var discountnoid = parseInt($("#discountno").text());
+        if(discountable == 0) {
+          discountnoid = discountnoid - oldPrice + newPrice;
+          $("#discountno").html(discountnoid);
+        } else if(discountable == 1) {
+          discountyesid = discountyesid - oldPrice + newPrice;
+          $("#discountyes").html(discountyesid);
+        }
+        console.log(discountnoid + discountyesid);
       }
       </script>
 
@@ -257,7 +287,11 @@
       $("#discount").change(function(){
         var totalPrice = parseInt($("#totalPrice").text());
         var discount = parseInt($("#discount").val());
-        var newTotalPrice = totalPrice - (totalPrice * (discount/100));
+
+        var discountyes = parseInt($("#discountyes").text());
+        var discountno = parseInt($("#discountno").text());
+ 
+        var newTotalPrice = discountno + (discountyes - (discountyes * (discount/100)));
         console.log(newTotalPrice);
         $("#totalPriceFinal").text(newTotalPrice);
         $("#totalPriceFinalP").text(newTotalPrice);

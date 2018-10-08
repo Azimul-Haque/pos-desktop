@@ -100,7 +100,7 @@ function addItem() {
     modal: true,
     show: false,
     width: 800,
-    height: 400,
+    height: 500,
     icon: path.join(__dirname, 'assets/icon/icon.ico'),
   })
   aboutWindow.loadURL(url.format({
@@ -120,8 +120,8 @@ function openReceiptPage() {
     parent: mainWindow,
     modal: true,
     show: false,
-    width: 1100,
-    height: 550
+    width: 1150,
+    height: 700
   })
   receiptWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'receipt.html'),

@@ -4,6 +4,7 @@
   <title>Add Item</title>
   <!--Import Google Icon Font-->
   <link href="css/materialize-icon.css" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="css/styles.css"  media="screen,projection">
   <!--Import materialize.css-->
   <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
   <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
@@ -11,6 +12,7 @@
   <script type="text/javascript" src="js/materialize.min.js"></script>
   <script type="text/javascript" src="js/dateformat.js"></script>
   <script type="text/javascript" src="js/receipt.js"></script>
+  <script type="text/javascript" src="js/print.js"></script>
   <script>if (window.module) module = window.module;</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <style>
@@ -22,18 +24,70 @@
 <body bgcolor="#e0f2f1">
   <div class="">
     <div class="row">
-        <div class="col s12 m6">
-            <h4>Todays Total Collection:</h3>
-            <h5><b>৳ <span id="todaysCollection">0.00</span></b></h5><br><br>
-            <table class="" id="receipttable"></table>
+        <div class="col s12 m4">
+          <h4>Today's Collection:</h3>
+          <h5><b>৳ <span id="todaysCollection">0.00</span></b></h5>
+          <div style="border: 1px dotted #000000; background: #ffffff;">
+            <div class="receipt" id="printArea">
+              <section class="sheet padding-10mm">
+                <center>
+                  <img src="assets/icon/icon.png" style="width: 50px; height: auto;"><br>
+                  <span>Queen Island Kitchen</span><br>
+                  <span>Press Club, Bhola-8300</span><br>
+                  <span>Phone: 01704-828518</span><br>
+                  <span>queenislandkitchen.com</span><br>
+                </center>
+                <span style="border: 1px dotted #000000; margin: 5px; float: right;width: 30mm;">QTY:</span><br><br><br/>
+                <span>Receipt # <span id="receiptnoRP"></span></span><br>
+                <span id="dateTimeP"></span><br>
+                <script>
+                  document.getElementById("dateTimeP").innerHTML = dateTime = dateFormat(new Date(), "mmmm dd, yyyy, HH:MM TT");;
+                </script>
+                <table width="100%">
+                  <thead>
+                    <tr>
+                      <td>Item</td>
+                      <td>Qty</td>
+                      <td class="rightalign">Price</td>
+                    </tr>
+                  </thead>
+                  <tbody id="receipttable">
+                  </tbody>
+                  <tfoot id="receiptFoot">
+                    <tr>
+                      <td colspan="3" style="border-bottom: 1px dotted black;"></td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" class="rightalign">Total:</td>
+                      <td id="totalPriceRP" class="rightalign"></td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" class="rightalign">Discount(%):</td>
+                      <td id="discountRP" class="rightalign"></td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" class="rightalign">Total Price:</td>
+                      <td id="totalPriceFinalRP" class="rightalign"></td>
+                    </tr>
+                  </tfoot>
+                </table>
+                <br>
+                <center>*** FEEL THE FOOD ***</center>
+              </section>
+            </div>
+          </div><br>
+          <a class="waves-effect waves-light btn noPrint" id="printreceipt"><i class="material-icons left">print</i>Print</a><br/>
+          <span id="printedMessage"></span>
         </div>
-        <div class="col s12 m6">
-        <h4>Receipts:</h4>
+        <div class="col s12 m8">
+          <h4>Receipts:</h4>
           <table class="">
             <thead>
               <tr>
                 <th>Receipt No</th>
                 <th>Total</th>
+                <th>Discount</th>
+                <th>Discounted Price</th>
                 <th>Datetime</th>
                 <th></th>
               </tr>
@@ -53,6 +107,28 @@
         location.reload();
       }
     });
+  </script>
+
+<script>
+  $(document).ready(function(){
+    $("#printreceipt").click(function(){
+      $("#printArea").print({
+        globalStyles: false,
+        mediaPrint: false,
+        stylesheet: 'css/styles.css',
+        noPrintSelector: ".noPrint",
+        iframe: true,
+        append: null,
+        prepend: null,
+        manuallyCopyFormValues: true,
+        deferred: $.Deferred(),
+        timeout: 750,
+        title: null,
+        doctype: '<!doctype html>'
+      });
+      $('#printedMessage').html('*** The receipt has been printed ***');
+    });
+  });
   </script>
 
 </body>
