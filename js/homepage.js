@@ -10,7 +10,7 @@ function populateTable() {
     // Generate the table body
     var itemsButtonGroupBody = '';
     for (i = 0; i < items.length; i++) {
-        itemsButtonGroupBody += '<div class="col s6 m4"><button class="col s12 m12 btn btn-large waves-effect waves-light orange" onclick="findItem(\'' + items[i]._id + '\')">'+ items[i].itemname +'</button><br/><br/><br/></div>';
+        itemsButtonGroupBody += '<button class="col s12 m12 btn btn-small waves-effect waves-light aqua" onclick="findItem(\'' + items[i]._id + '\')" style="font-size:10px; width: 32%; float: left; margin: 3px;">'+ items[i].itemname +'</button>';
     }
     // Fill the table content
     document.getElementById('itemsinhomepage').innerHTML = itemsButtonGroupBody;

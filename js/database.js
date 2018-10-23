@@ -81,7 +81,7 @@ exports.findItem = function(id) {
       cell3P.className = "rightalign";
 
       cell1.innerHTML = "<span id='"+doc._id+"'>" + doc.itemname + "</span>";
-      cell1P.innerHTML = "<span id='P"+doc._id+"'>" + doc.itemname + "</span>";
+      cell1P.innerHTML = "<span id='P"+doc._id+"' style='font-size: 11px;'>" + doc.itemname + "</span>";
 
       cell2.innerHTML = "<input type='number' min='1' value='1' id='qty"+doc._id+"' onchange='incrItemPrice(\"" + doc._id + "\",\"" + doc.itemprice + "\", \"" + doc.itemname + "\", \"" + doc.itemdiscountable + "\")' style='width: 35px !important; height: 20px !important;'>";
       cell2P.innerHTML = "<span id='qtyP"+doc._id+"'>1</span>";
@@ -109,8 +109,28 @@ function sumOfColumns(){
 
 // Edits an item
 exports.editItem = function(id) {
+  itemdb.findOne({ _id: id }, function (err, doc) {
+    document.getElementById('itemidEdit').value = doc._id;
+    document.getElementById('itemnameEdit').value = doc.itemname;
+    document.getElementById('itempriceEdit').value = doc.itemprice;
+    document.getElementById('itemdiscountableEdit').value = doc.itemdiscountable;
+  });
+}
 
-  // edit the item
+// Update an item
+exports.updateItem = function(itemid, itemname, itemprice, itemdiscountable) {
+  itemdb.update({ _id: itemid }, 
+    { $set: { itemname: itemname, itemprice: itemprice, itemdiscountable: itemdiscountable } }, 
+    { multi: true }, function (err, numReplaced) {
+    // numReplaced = 3
+    console.log(numReplaced);
+    if(numReplaced > 0) {
+      M.toast({html: 'Successfully updated!'});
+    } else {
+      M.toast({html: 'Problem occured! Try Lated.'});
+    }
+    
+  });
 }
 
 // Deletes an item
@@ -143,7 +163,7 @@ function formatMonth(date) {
   return [month, year].join('-');
 }
 
-exports.addReceipt = function(receiptno, receiptData, total, discount, discountedTotal) {
+exports.addReceipt = function(receiptno, receiptData, total, discount, discountedTotal, customQty) {
   // Create the receipt object
   var receipt = {
     "receiptno": receiptno,
@@ -151,6 +171,7 @@ exports.addReceipt = function(receiptno, receiptData, total, discount, discounte
     "total": total,
     "discount": discount,
     "discounted_total": discountedTotal,
+    "customQty": customQty,
     "created_at": Date.now(),
   };
 
@@ -178,11 +199,12 @@ exports.findReceipt = function(receiptno) {
     console.log(doc.receiptdata.items.length);
     for(i = 0; i < doc.receiptdata.items.length; i++) {
       receipttable += '<tr>';
-      receipttable += '  <td>' + doc.receiptdata.items[i].name + '</td>';
+      receipttable += '  <td style="font-size: 11px;">' + doc.receiptdata.items[i].name + '</td>';
       receipttable += '  <td>' + doc.receiptdata.items[i].qty + '</td>';
       receipttable += '  <td class="rightalign">' + doc.receiptdata.items[i].price + '</td>';
       receipttable += '</tr>';
     }
+    document.getElementById('customQty').innerHTML = doc.customQty;
     document.getElementById('receiptnoRP').innerHTML = doc.receiptno;
     document.getElementById('totalPriceRP').innerHTML = doc.total;
     document.getElementById('discountRP').innerHTML = doc.discount;

@@ -17,14 +17,6 @@
     {
         display: none !important;
     }
-    #printArea {
-        /* width: 80mm; 
-        height: auto; 
-        font-family: Courier; 
-        font-size: 15px; 
-        padding: 0px;
-        margin: 0px; */
-    }
 }
 
 .rightalign {
@@ -34,3 +26,5 @@
 .centeralign {
     text-align: center;
 }
+
+/* icons issue */

@@ -2,14 +2,36 @@
 <head>
   <meta charset="utf-8">
   <title>About</title>
-  <link rel="stylesheet" href="css/skeleton.css">
-  <link rel="stylesheet" href="css/index.css">
+  <!--Import Google Icon Font-->
+  <link href="css/materialize-icon.css" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 </head>
 <body>
   <div class="container">
     <h3>About</h3>
-    <p>This Application is developed by A. H. M. Azimul Haque Rifat, to serve some basic purpose of a Restaurant.</p>
-    <p>To know more, <a href="http://orbachinujbuk.com/">click here</a></p>
+    <p>This desktop application is developed under the <b>ISC License</b> only and solely for the<br/> 
+    <b>Queen Island Kitchen</b>, to serve the basic purpose of generating Receipts and printing from POS machine.
+      
+    <p><b>Developer:</b> A. H. M. Azimul Haque Rifat<br/>
+      <small>For any inconvenience: &lt;+880 1751 398 392&gt;</small>
+    </p>
+    <p>Version: <b>1.5.0</b></p>
+
+    <p>Copyright &copy; 2018, Queen Island Kitchen &amp; A. H. M. Azimul Haque</p>
   </div>
+
+
+  <script type="text/javascript">
+    var remote = require('electron').remote;
+    document.addEventListener('keydown', function (e) {
+      if (e.which === 123) {
+        remote.getCurrentWindow().webContents.openDevTools();
+      } else if (e.which === 116) {
+        location.reload();
+      }
+    });
+  </script>
+
 </body>
 </html>

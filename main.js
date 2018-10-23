@@ -39,6 +39,40 @@ menuTemplate = [
     click: () => {
       openReceiptPage()
     }
+  },
+	{
+    label: 'Reload',
+    role: 'reload'
+  },
+   
+  {
+     label: 'View',
+     submenu: [
+        {
+           role: 'reload'
+        },
+        {
+           role: 'toggledevtools'
+        },
+        {
+           type: 'separator'
+        },
+        {
+           role: 'resetzoom'
+        },
+        {
+           role: 'zoomin'
+        },
+        {
+           role: 'zoomout'
+        },
+        {
+           type: 'separator'
+        },
+        {
+           role: 'togglefullscreen'
+        }
+     ]
   }
 ]
 
@@ -59,7 +93,7 @@ function createWindow () {
   mainWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
     protocol: 'file:',
-    slashes: true
+    slashes: true,
   }))
   
   // Set up the menu
@@ -99,8 +133,8 @@ function addItem() {
     parent: mainWindow,
     modal: true,
     show: false,
-    width: 800,
-    height: 500,
+    width: 1000,
+    height: 650,
     icon: path.join(__dirname, 'assets/icon/icon.ico'),
   })
   aboutWindow.loadURL(url.format({
@@ -121,7 +155,8 @@ function openReceiptPage() {
     modal: true,
     show: false,
     width: 1150,
-    height: 700
+    height: 700,
+    icon: path.join(__dirname, 'assets/icon/icon.ico'),
   })
   receiptWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'receipt.html'),
@@ -132,6 +167,12 @@ function openReceiptPage() {
   receiptWindow.once('ready-to-show', () => {
     receiptWindow.show()
   })
+}
+
+function reloadPage() {
+  var remote = require('electron').remote;
+  remote.getCurrentWindow().webContents.openDevTools();
+  M.toast({html: 'Reloaded!'});
 }
 
 // Create the window then the app is ready

@@ -7,6 +7,7 @@
       <!-- <link type="text/css" rel="stylesheet" href="css/normalize.css"> -->
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection">
       <link type="text/css" rel="stylesheet" href="css/styles.css"  media="screen,projection">
+      <link type="text/css" rel="stylesheet" href="css/normalize.css"  media="screen,projection">
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <script type="text/javascript" src="js/dateformat.js"></script>
@@ -20,6 +21,7 @@
           bottom: 10%;
           left: 7%;
         }
+        ::placeholder { color: #b71c1c ; opacity: 1; }
       </style>
     </head>
 
@@ -29,9 +31,23 @@
             <div class="col s12 m3" id="">
               <div>
                 <h5><b>Queen Island</b> Kitchen <span id="headerOnline" class="noPrint" style="font-size: 14px !important;"></span></h5>
-                <p id="headerDate"></p>
+                
+                <li class="collection-item valign-wrapper">
+                  <i class="material-icons tiny valign">date_range</i>
+                  <span id="headerDate" style="margin: 0px 10px 0px 5px;"></span>
+                  <i class="material-icons tiny valign">access_time</i>
+                  <span id="headerClock" style="margin: 0px 0px 0px 5px;"></span>                                                    
+                </li>
                 <script>
                 document.getElementById("headerDate").innerHTML = new Date().toDateString();
+                var myVar = setInterval(function() {
+                  myTimer();
+                }, 1000);
+
+                function myTimer() {
+                  var d = new Date();
+                  document.getElementById("headerClock").innerHTML = d.toLocaleTimeString();
+                }
                 </script>
               </div>
               <table class="highlight table table-condensed" id="receipttable">
@@ -43,7 +59,7 @@
                             <th class="noPrint"></th>
                         </tr>
                       </thead>
-              
+    
                       <tbody id="dynamicItems">
                       </tbody>
                       <tfoot id="receiptFoot">
@@ -64,7 +80,10 @@
                           <td></td>
                         </tr>
                       </tfoot>
-                    </table><br></br>
+                    </table>
+                    <div class="input-field">
+                      <input type="text" id="customQtyText" placeholder="QTY" style="width: 60px; float: right;">
+                    </div>
                     Discountable Price: <span id="discountyes">0</span><br/>
                     Not Discountable Price: <span id="discountno">0</span>
                     <script>
@@ -118,7 +137,7 @@
                       <span>Phone: 01704-828518</span><br>
                       <span>queenislandkitchen.com</span><br>
                     </center>
-                    <span style="border: 1px dotted #000000; margin: 5px; float: right;width: 30mm;">QTY:</span><br><br><br/>
+                    <span style="border: 1px dotted #000000; margin: 5px; float: right;width: 25mm;">QTY: <span id="customQty"></span></span><br><br><br/>
                     <span>Receipt # <span id="receiptnoP"></span></span><br>
                     <span id="dateTimeP"></span><br>
                     <script>
@@ -160,14 +179,18 @@
             </div>
             <div class="col s12 m6">
               <div class="well">
-                  <div class="card blue-grey lighten-2">
-                      <div class="card-content white-text">
-                        <span class="card-title">Items</span>
-                        <div class="row" id="itemsinhomepage">
-                        </div>
-                        <span id="testItem"></span>
+                  <div class="card lime lighten-4">
+                    <div class="card-content">
+                      <span class="card-title"><b>Items</b> 
+                          <li class="collection-item valign-wrapper" style="width: 200px; float: right;">
+                            <i class="material-icons small valign">search</i>
+                            <input id="searchItem" type="text" placeholder="Search">                                                  
+                          </li>
+                        </span><br/>
+                      <div class="row" id="itemsinhomepage" style="height: 480px; overflow-y: scroll;">
                       </div>
                     </div>
+                  </div>
               </div>
               <div style="float: right;" id="isOnline"></div>
               <div class="" id="progressSync">
@@ -197,6 +220,7 @@
           });
           totalPriceforRD = parseInt($("#totalPrice").html());
           discountforRD = parseInt($("#discount").val());
+          customQtyText = parseInt($("#customQtyText").val());
           discountedTotal = totalPriceforRD - (totalPriceforRD * (discountforRD/100));
           if(isNaN(totalPriceforRD)) {
             M.toast({html: 'Select an Item first!'});
@@ -204,31 +228,34 @@
             if(isNaN(discountforRD)) {
             M.toast({html: 'Set a Discount! At least 0'});
             } else {
-              var receiptno = Date.now();
-              var receiptData = {
-                                "items":itemsArrayforRD
-                                }
-              console.log(receiptData);
-              $("#receiptnoP").html(receiptno);
-              $("#testItem").html(JSON.stringify(receiptData));
-              $("#printArea").print({
-                      globalStyles: false,
-                      mediaPrint: false,
-                      stylesheet: 'css/styles.css',
-                      noPrintSelector: ".noPrint",
-                      iframe: true,
-                      append: null,
-                      prepend: null,
-                      manuallyCopyFormValues: true,
-                      deferred: $.Deferred(),
-                      timeout: 750,
-                      title: 'Test Rifat',
-                      doctype: '<!doctype html>'
-              });
-              $("#progress").addClass("progress");
-              database.addReceipt(receiptno,receiptData, totalPriceforRD, discountforRD, discountedTotal);
-              M.toast({html: 'Added data to the database!'})
-              setTimeout(function(){ location.reload(); }, 1000);
+              if(isNaN(customQtyText)) {
+                M.toast({html: 'Set a QTY! If none, just write 0'});
+              } else {
+                var receiptno = Date.now();
+                var receiptData = {
+                                  "items":itemsArrayforRD
+                                  }
+                console.log(receiptData);
+                $("#receiptnoP").html(receiptno);
+                $("#printArea").print({
+                        globalStyles: false,
+                        mediaPrint: false,
+                        stylesheet: 'css/styles.css',
+                        noPrintSelector: ".noPrint",
+                        iframe: true,
+                        append: null,
+                        prepend: null,
+                        manuallyCopyFormValues: true,
+                        deferred: $.Deferred(),
+                        timeout: 750,
+                        title: 'Test Rifat',
+                        doctype: '<!doctype html>'
+                });
+                $("#progress").addClass("progress");
+                database.addReceipt(receiptno, receiptData, totalPriceforRD, discountforRD, discountedTotal, customQtyText);
+                M.toast({html: 'Added data to the database!'})
+                setTimeout(function(){ location.reload(); }, 1000);
+              }
             }
           }
         });
@@ -281,8 +308,28 @@
         console.log(discountnoid + discountyesid);
       }
       </script>
-
       <script>
+      $(document).ready(function(){
+        $('#customQtyText').keyup(function() {
+          $('#customQty').text($(this).val());
+        })
+      });
+      </script>
+      <script>
+      // discount script
+      $("#discount").keyup(function(){
+        var totalPrice = parseInt($("#totalPrice").text());
+        var discount = parseInt($("#discount").val());
+
+        var discountyes = parseInt($("#discountyes").text());
+        var discountno = parseInt($("#discountno").text());
+ 
+        var newTotalPrice = Math.round(discountno + (discountyes - (discountyes * (discount/100))));
+        console.log(newTotalPrice);
+        $("#totalPriceFinal").text(newTotalPrice);
+        $("#totalPriceFinalP").text(newTotalPrice);
+        $("#discountP").text(discount);
+      });
       // discount script
       $("#discount").change(function(){
         var totalPrice = parseInt($("#totalPrice").text());
@@ -291,13 +338,14 @@
         var discountyes = parseInt($("#discountyes").text());
         var discountno = parseInt($("#discountno").text());
  
-        var newTotalPrice = discountno + (discountyes - (discountyes * (discount/100)));
+        var newTotalPrice = Math.round(discountno + (discountyes - (discountyes * (discount/100))));
         console.log(newTotalPrice);
         $("#totalPriceFinal").text(newTotalPrice);
         $("#totalPriceFinalP").text(newTotalPrice);
         $("#discountP").text(discount);
       });
       </script>
+      
       <script>
         function updateIndicator() {
           if(navigator.onLine) {
@@ -326,6 +374,15 @@
           updateIndicator();          
         });
     </script>
-      
+    <script>
+        $(document).ready(function(){
+          $("#searchItem").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#itemsinhomepage button").filter(function() {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+            });
+          });
+        });
+    </script>
     </body>
   </html>

@@ -1,6 +1,166 @@
-{"itemname":"Coke (1 glass)","itemprice":"25","itemdiscountable":"0","created_at":1539030885718,"_id":"0ClXgM9v0gZW12wH"}
-{"itemname":"Chicken Fry (3)","itemprice":"125","itemdiscountable":"1","created_at":1538611733070,"_id":"2WWUViXSkoGDwt2z"}
-{"itemname":"Chowmein","itemprice":"1","itemdiscountable":"1","created_at":1538611521910,"_id":"ZDCU4Am6oQhrt1gA"}
-{"itemname":"Noodles","itemprice":"100","itemdiscountable":"1","created_at":1538611600486,"_id":"Zv0DEmxi1slyGx27"}
-{"itemname":"Water","itemprice":"10","itemdiscountable":"0","created_at":1538611621869,"_id":"otyNgcvpSYWqOW8s"}
-{"itemname":"Burger","itemprice":"120","itemdiscountable":"1","created_at":1538611611092,"_id":"qXo8PrN4orHu8Hdc"}
+{"itemname":"01.Chicken Chilli Onion (3)","itemprice":"340","itemdiscountable":"1","created_at":1539758445933,"_id":"00sQm3EpjxZeM9gF"}
+{"itemname":"108.Prawn Sizzling (3)","itemprice":"400","itemdiscountable":"1","created_at":1539764661413,"_id":"08JPbNe8tSTMNh1z"}
+{"itemname":"125.Mineral Water (500ml)","itemprice":"15","itemdiscountable":"0","created_at":1539765249452,"_id":"0ZJhEBYvqRQ939Td"}
+{"itemname":"109.Beef Sizzling (3)","itemprice":"410","itemdiscountable":"1","created_at":1539764686509,"_id":"0u9McYEAy3s3LWzo"}
+{"itemname":"28.Beef Kala Bhuna (2)","itemprice":"240","itemdiscountable":"1","created_at":1539760761253,"_id":"17mbLa1jOc14a2Vc"}
+{"itemname":"28.Beef Kala Bhuna (3)","itemprice":"470","itemdiscountable":"1","created_at":1539760766670,"_id":"1B9MCn4vZqni2zpa"}
+{"itemname":"97.Prawn Noodles (1)","itemprice":"100","itemdiscountable":"1","created_at":1539764217880,"_id":"1PNcg2dYTMsgTzI1"}
+{"itemname":"75.Tarika Dall (3)","itemprice":"160","itemdiscountable":"1","created_at":1539763359359,"_id":"1X7r4XPTJPZw2rJy"}
+{"itemname":"49.Qik Special Fried Chicken (3)","itemprice":"260","itemdiscountable":"1","created_at":1539762293879,"_id":"27xwsAvH6EoIMKtL"}
+{"itemname":"116.Chicken Burger","itemprice":"100","itemdiscountable":"1","created_at":1539764942614,"_id":"3g8bA7XFZQhGsYCM"}
+{"itemname":" 35.Chicken Boti Kabab (3)","itemprice":"360","itemdiscountable":"1","created_at":1539761080416,"_id":"3q6uuw3HcPpfGhqT"}
+{"itemname":"125.Mineral Water (1.5L)","itemprice":"25","itemdiscountable":"0","created_at":1539765264309,"_id":"4fid1BPYVJJdmyd1"}
+{"itemname":"126.Soft Drinks (coke)","itemprice":"20","itemdiscountable":"0","created_at":1539765285951,"_id":"55q7O5UmN20HI4eu"}
+{"itemname":"College pack","itemprice":"130","itemdiscountable":"1","created_at":1539903836234,"_id":"5QVDqkgF9VlKilcp"}
+{"itemname":"91.Chicken on Toast-6pcs ","itemprice":"350","itemdiscountable":"1","created_at":1539763860612,"_id":"6camcWcCnK9wnu4o"}
+{"itemname":"03.Chicken Red Curry (3)","itemprice":"360","itemdiscountable":"1","created_at":1539758997589,"_id":"6hqPKGWW5kq4XC0j"}
+{"itemname":"95.Qik special Noodles single","itemprice":"110","itemdiscountable":"1","created_at":1539959001931,"_id":"71jxhQgHWXT8OXBR"}
+{"itemname":"86.French Fry","itemprice":"85","itemdiscountable":"1","created_at":1539763693553,"_id":"7URlvSYemTVUdHXG"}
+{"itemname":"127.Can","itemprice":"50","itemdiscountable":"0","created_at":1539765304789,"_id":"84xKuZxftnf2ZzqM"}
+{"itemname":"14.Beef with Mashroom (3)","itemprice":"390","itemdiscountable":"1","created_at":1539759515038,"_id":"88VX9993KlQckrIR"}
+{"itemname":"78.Mixed Raita Salad (3)","itemprice":"200","itemdiscountable":"1","created_at":1539763450060,"_id":"8J6ZCNkW0Tgmk0B9"}
+{"itemname":"133.Black Coffee","itemprice":"35","itemdiscountable":"0","created_at":1539765434102,"_id":"8Uzu2OeYshB6XkyP"}
+{"itemname":"80..Chicken Biriani","itemprice":"150","itemdiscountable":"1","created_at":1539763581877,"_id":"8h6gt5f5b2JtRjNe"}
+{"itemname":"61.Thai Clear Soup (3)","itemprice":"380","itemdiscountable":"1","created_at":1539762913759,"_id":"9DFWSVWk5uOW1bbO"}
+{"itemname":"COMBO-2","itemprice":"240","itemdiscountable":"0","created_at":1539765475654,"_id":"9GpzCT4mSGzdbWd0"}
+{"itemname":"92.Chicken Lolly-6pcs","itemprice":"280","itemdiscountable":"1","created_at":1539763905055,"_id":"9OTNjRzf6sXAtzJn"}
+{"itemname":"12.Beef with Oyster Sauce (3)","itemprice":"470","itemdiscountable":"1","created_at":1539759411726,"_id":"9obnJQbAjTdnrRNb"}
+{"itemname":"19.Prawn with Mashroom (3)","itemprice":"400","itemdiscountable":"1","created_at":1539759655853,"_id":"AAlMHGEEOdNqKKGT"}
+{"itemname":"111.Mexican Pizza-Single","itemprice":"490","itemdiscountable":"1","created_at":1539764775501,"_id":"B74LUxbBUrdffse2"}
+{"itemname":"31.Mutton Acharia (3)","itemprice":"590","itemdiscountable":"1","created_at":1539760956008,"_id":"BDBa8X2z12rj68mN"}
+{"itemname":"83.Hydrabadi Biriani","itemprice":"230","itemdiscountable":"1","created_at":1539763621180,"_id":"BhoPdXpThU5lp3rr"}
+{"itemname":"24.Chicken Tikka Butter Masala (3)","itemprice":"460","itemdiscountable":"1","created_at":1539760454111,"_id":"BxDlrRWD1EDH1rGL"}
+{"itemname":"85.QIK Special Cutlet (3)","itemprice":"400","itemdiscountable":"1","created_at":1539763680197,"_id":"CM2kGG9PTQNSIUAY"}
+{"itemname":"40.Chicken Reshmi Kabab (3)","itemprice":"380","itemdiscountable":"1","created_at":1539761328599,"_id":"CQwboAKAxDijisBs"}
+{"itemname":"Food pack 02(120)","itemprice":"120","itemdiscountable":"0","created_at":1539948919223,"_id":"CrGj0XcCDFH98VA5"}
+{"itemname":"39.Chicken Tikka Kabab (3)","itemprice":"400","itemdiscountable":"1","created_at":1539761307973,"_id":"D95P6hBTKVR92U4u"}
+{"itemname":"56.Thai Soup Thick (3)","itemprice":"320","itemdiscountable":"1","created_at":1539762774272,"_id":"DWWsm5y2LMkPpVP2"}
+{"itemname":"112.California Pizza-Double","itemprice":"770","itemdiscountable":"1","created_at":1539764868485,"_id":"DuI6UWSO97I8K9jE"}
+{"itemname":"60.Prawn Corn Soup (3)","itemprice":"245","itemdiscountable":"1","created_at":1539762883697,"_id":"EHiFGE42lsE5YFEf"}
+{"itemname":"04.Chicken Chilli Dry (3)","itemprice":"365","itemdiscountable":"1","created_at":1539759016494,"_id":"EdqfdypO5cHkaaOg"}
+{"itemname":"111.Mexican Pizza-Full","itemprice":"900","itemdiscountable":"1","created_at":1539764813709,"_id":"Fbfnzq4peC10fqbc"}
+{"itemname":"82.Mutton Biriani","itemprice":"200","itemdiscountable":"1","created_at":1539763608699,"_id":"GGx83GeEkUSiWA2p"}
+{"itemname":"113.Egg Sandwich","itemprice":"35","itemdiscountable":"1","created_at":1539764898165,"_id":"Gk7RDlKQS1SaVpwa"}
+{"itemname":"126.Soft Drinks(Dew)","itemprice":"20","itemdiscountable":"0","created_at":1539903551067,"_id":"H7hWbHKUnc3ci0u9"}
+{"itemname":"QIK Special School Pack","itemprice":"100","itemdiscountable":"0","created_at":1539765503337,"_id":"HnrrkPk30kBu7A4G"}
+{"itemname":"118.Fresh Lemon Juice","itemprice":"20","itemdiscountable":"0","created_at":1539765052117,"_id":"Ho1t206pzmmmRAzA"}
+{"itemname":"119.Pineapple Juice","itemprice":"80","itemdiscountable":"0","created_at":1539765069285,"_id":"IVHwiih2GIVBNv4L"}
+{"itemname":"117.Beef Burger ","itemprice":"120","itemdiscountable":"1","created_at":1539764963421,"_id":"JHZ4xuraTPd7teGG"}
+{"itemname":"111.Mexican Pizza-Double","itemprice":"750","itemdiscountable":"1","created_at":1539764794493,"_id":"JTyu0tYxESfQkEUY"}
+{"itemname":"125.mineral water(2L)","itemprice":"35","itemdiscountable":"0","created_at":1539903344851,"_id":"JU6FFjMCDQEBbjVs"}
+{"itemname":"41.Chicken Tandoori-Full","itemprice":"420","itemdiscountable":"1","created_at":1539761382222,"_id":"KlgWhZVROtsIxRd3"}
+{"itemname":"81.Beef Biriani","itemprice":"175","itemdiscountable":"1","created_at":1539763596268,"_id":"LH47FIjgoK4JNECi"}
+{"itemname":"11.Beef With Garlic (3)","itemprice":"370","itemdiscountable":"1","created_at":1539759306533,"_id":"M4rSLPDn3xlKSmRF"}
+{"itemname":"63.Chicken Fried Rice (3)","itemprice":"270","itemdiscountable":"1","created_at":1539762969630,"_id":"MkXNZQu9WBkpHnSj"}
+{"itemname":"47.Butter Naan","itemprice":"45","itemdiscountable":"1","created_at":1539761829063,"_id":"MxWvfznfUaJpZwkk"}
+{"itemname":"53.Chicken Wings-8Pcs","itemprice":"205","itemdiscountable":"1","created_at":1539762461424,"_id":"MzpJMIqhJ3wjgspF"}
+{"itemname":"79.Green Salad (3)","itemprice":"180","itemdiscountable":"1","created_at":1539763470588,"_id":"Nn2CH4mbKvAucoFI"}
+{"itemname":"44.Tandoori Lassa Paratha","itemprice":"30","itemdiscountable":"1","created_at":1539761781543,"_id":"O4czWvZ1VC1wXoxf"}
+{"itemname":"26.Chicken Korai (3)","itemprice":"420","itemdiscountable":"1","created_at":1539760532207,"_id":"OHL17cOX9EhesFpz"}
+{"itemname":"104.QIK Special Shwarma","itemprice":"140","itemdiscountable":"1","created_at":1539764566349,"_id":"OMgXVBEY7sbkVzB6"}
+{"itemname":"120.Fresh Mango Juice","itemprice":"75","itemdiscountable":"0","created_at":1539765078621,"_id":"Of7eg3fdriA1AwMt"}
+{"itemname":"25.Chicken Acharia (3)","itemprice":"460","itemdiscountable":"1","created_at":1539760480223,"_id":"POWzB8v7WSaJrnpx"}
+{"itemname":"90.Chicken Ball-6pcs","itemprice":"280","itemdiscountable":"1","created_at":1539763840777,"_id":"PP7a4bze7WEp8usJ"}
+{"itemname":"76.Chicken Cashewnut Salad (3)","itemprice":"320","itemdiscountable":"1","created_at":1539763406204,"_id":"R0DAEAG3UZ46qsYj"}
+{"itemname":"68.American Fried Rice (3)","itemprice":"390","itemdiscountable":"1","created_at":1539763055920,"_id":"RcgVZvorEDZzKwD6"}
+{"itemname":"87.Onthon-6Pcs","itemprice":"135","itemdiscountable":"1","created_at":1539763730965,"_id":"RtDQX8RT3w5xCQ96"}
+{"itemname":"27.Beef Bhuna (2)","itemprice":"220","itemdiscountable":"1","created_at":1539760711990,"_id":"T5rvCz1C55YUOFqF"}
+{"itemname":"124.Fresh Grape Juice","itemprice":"135","itemdiscountable":"0","created_at":1539765162950,"_id":"TxKthVgZajoMAJ4w"}
+{"itemname":"94.Prawn Cutlet (3) ","itemprice":"320","itemdiscountable":"1","created_at":1539763995579,"_id":"UHofhJQxI7aLri6R"}
+{"itemname":"52.Chicken Fry-8Pcs","itemprice":"360","itemdiscountable":"1","created_at":1539762405199,"_id":"UYRgxVWsdoRPqHIl"}
+{"itemname":"99.Vegetable Noodles","itemprice":"200","itemdiscountable":"1","created_at":1539764256484,"_id":"VEEMUd7GFS6S3FpF"}
+{"itemname":"53.Chicken Wings-4Pcs","itemprice":"110","itemdiscountable":"1","created_at":1539762430934,"_id":"VV6Nhm4Oy39qLS8R"}
+{"itemname":"02.chicken Cashewnut Curry (3)","itemprice":"360","itemdiscountable":"1","created_at":1539758893959,"_id":"VdqeVs1FE1VlCpmF"}
+{"itemname":"64.Vegetable Fried Rice (3)","itemprice":"200","itemdiscountable":"1","created_at":1539762985788,"_id":"VgAL3RjUdg1sjEKz"}
+{"itemname":"38.Chicken Grill (2)","itemprice":"180","itemdiscountable":"1","created_at":1539761242336,"_id":"Vgdp2GePB0o67S0d"}
+{"itemname":"121.Fresh Orange Juice","itemprice":"90","itemdiscountable":"0","created_at":1539765090437,"_id":"Vo1PKL8g1GRXDg0x"}
+{"itemname":"35.Beef Boti Kabab (3)","itemprice":"420","itemdiscountable":"1","created_at":1539761122510,"_id":"VwMR1dDoR9372xNw"}
+{"itemname":"101Shichuan Chopsy","itemprice":"330","itemdiscountable":"1","created_at":1539764333965,"_id":"WA6T7aSkoM5qCVnN"}
+{"itemname":"49.Special fried Chicken single ","itemprice":"50","itemdiscountable":"1","created_at":1539960459900,"_id":"WK27gHWSiObBwkpo"}
+{"itemname":"29.Mutton Curry (3)","itemprice":"450","itemdiscountable":"1","created_at":1539760791543,"_id":"WP69xwxUBTtYpG1q"}
+{"itemname":"30.Mutton Korai (3)","itemprice":"480","itemdiscountable":"1","created_at":1539760827439,"_id":"WgVIdQE7vbgqBlzp"}
+{"itemname":"23.Prawn Masala","itemprice":"420","itemdiscountable":"1","created_at":1539759782294,"_id":"WqGCL6kWmL2qK98A"}
+{"itemname":"05.Chicken Masala-ব্রয়. (3)","itemprice":"300","itemdiscountable":"1","created_at":1539759138797,"_id":"WqOqLeX9BNNWNLlW"}
+{"itemname":"102.QIK Special Red Pasta","itemprice":"250","itemdiscountable":"1","created_at":1539764355806,"_id":"WtTjs2q8nuuDSDQS"}
+{"itemname":"50.Crispy Fried Chicken","itemprice":"85","itemdiscountable":"1","created_at":1539762314545,"_id":"X34xpOPdeOwGmpIw"}
+{"itemname":"69.Mixed Vegetable (3)","itemprice":"200","itemdiscountable":"1","created_at":1539763087932,"_id":"XBxtiQWIuFDCu7pg"}
+{"itemname":"100.American Chopsy","itemprice":"360","itemdiscountable":"1","created_at":1539764310336,"_id":"YBpA9pbZ0fSal5qU"}
+{"itemname":"73.Vegetable Dopiaza India (3)","itemprice":"240","itemdiscountable":"1","created_at":1539763237149,"_id":"YRAm99lussMuhFxj"}
+{"itemname":"18.Prawn with Gonger (3)","itemprice":"355","itemdiscountable":"1","created_at":1539759629231,"_id":"YXEYaoOoBl3ENCCG"}
+{"itemname":"77.Peanut Salad (3)","itemprice":"280","itemdiscountable":"1","created_at":1539763423211,"_id":"YXsCWq1TbZMK7bzg"}
+{"itemname":"96.Chicken Noodles (1)","itemprice":"90","itemdiscountable":"1","created_at":1539764132414,"_id":"YiAkOZFd1bYBpnQX"}
+{"itemname":"71.Prawn Vegetable-full (3)","itemprice":"260","itemdiscountable":"1","created_at":1539763173783,"_id":"YxbQhy6vIfZDFyg0"}
+{"itemname":"130.Pudding","itemprice":"70","itemdiscountable":"0","created_at":1539765369621,"_id":"Z9j88y9KJXTNZKnj"}
+{"itemname":" 115.QIK Special Burger","itemprice":"150","itemdiscountable":"1","created_at":1539764929436,"_id":"ZStDHFRy0kBTm5k6"}
+{"itemname":"84.QIK Special Plater (3)","itemprice":"400","itemdiscountable":"1","created_at":1539763656621,"_id":"ZfUGhs9nH4KLsQIv"}
+{"itemname":"38.Chicken Grill (1)","itemprice":"90","itemdiscountable":"1","created_at":1539761233063,"_id":"ZqOGYvvvyhyLMMKI"}
+{"itemname":"123.Fresh Apple Juice","itemprice":"105","itemdiscountable":"0","created_at":1539765112565,"_id":"ZqhZiBn1pyGwO1E6"}
+{"itemname":"21.Sweet & Sour Prawn (3)","itemprice":"355","itemdiscountable":"1","created_at":1539759749022,"_id":"af7FfJI1TGt9dIO7"}
+{"itemname":"27.Beef Bhuna (3)","itemprice":"440","itemdiscountable":"1","created_at":1539760736277,"_id":"b41tkDRTVjwJjYE5"}
+{"itemname":"70.Chicken Vegetable (3)","itemprice":"270","itemdiscountable":"1","created_at":1539763121188,"_id":"b4Vq2NxrQOiixB7w"}
+{"itemname":"65.Egg Fried Rice (3)","itemprice":"220","itemdiscountable":"1","created_at":1539763004468,"_id":"b8V0Z0c2iRXhwO6B"}
+{"itemname":"32.Mutton Masala (3)","itemprice":"470","itemdiscountable":"1","created_at":1539760990049,"_id":"bMILdLeRVD4dTefg"}
+{"itemname":"Food pack 01(99)","itemprice":"99","itemdiscountable":"0","created_at":1539948865039,"_id":"bPCF03vjacbGo7vX"}
+{"itemname":"38.Chicken Grill (3)","itemprice":"350","itemdiscountable":"1","created_at":1539761279118,"_id":"dFVttXSrxpvkuRmc"}
+{"itemname":"06.Sweet & Sour Chicken (3)","itemprice":"320","itemdiscountable":"1","created_at":1539759165405,"_id":"dLZ9ejPhwqz9iycE"}
+{"itemname":"95.QIK Special Noodles (3)","itemprice":"280","itemdiscountable":"1","created_at":1539764081917,"_id":"duaRNtsaVEhhWl1y"}
+{"itemname":"89.Prawn on Toast-6pcs ","itemprice":"350","itemdiscountable":"1","created_at":1539763812981,"_id":"eAfCcUiTmXRwyc3t"}
+{"itemname":"122.Fresh Papaya Juice","itemprice":"65","itemdiscountable":"0","created_at":1539765100272,"_id":"eKhS7TJ32vCSCnte"}
+{"itemname":"46.Plain Naan","itemprice":"30","itemdiscountable":"1","created_at":1539761818935,"_id":"eaqy8WIpAqpKP1pA"}
+{"itemname":"57.Chicken Corn Soup (3)","itemprice":"230","itemdiscountable":"1","created_at":1539762793548,"_id":"f229MAEaDUqsZiVn"}
+{"itemname":"15.Beef Chilli Dry (3)","itemprice":"410","itemdiscountable":"1","created_at":1539759546670,"_id":"gekpwQtAmqAo4ZfH"}
+{"itemname":"54.QIK Special Soup (3)","itemprice":"250","itemdiscountable":"1","created_at":1539762576336,"_id":"gpMSTqaMhm8WYsAL"}
+{"itemname":"112.California Pizza-Full","itemprice":"920","itemdiscountable":"1","created_at":1539764875958,"_id":"hCU53JdGIWLtJQjn"}
+{"itemname":"43.Plain Paratha","itemprice":"20","itemdiscountable":"1","created_at":1539761430983,"_id":"hCxaEj4JTbCZeKPo"}
+{"itemname":"67.Steamed Rice (3)","itemprice":"155","itemdiscountable":"1","created_at":1539763039268,"_id":"iB92ymsk8mOX5LfE"}
+{"itemname":"71.Prawn Vegetable-half (3)","itemprice":"130","itemdiscountable":"1","created_at":1539763145772,"_id":"iD69dfrsLQBeHomu"}
+{"itemname":"20.Beef Red Curry (3)","itemprice":"520","itemdiscountable":"1","created_at":1539759687285,"_id":"ixB9owak4plCtXTD"}
+{"itemname":"Food pack 99","itemprice":"99","itemdiscountable":"0","created_at":1539949082668,"_id":"jP1ebg4tZGm6MToF"}
+{"itemname":"37.Beef Shik Kabab","itemprice":"150","itemdiscountable":"1","created_at":1539761212119,"_id":"jTQAGqfSPVLJvS3C"}
+{"itemname":"35.Beef Boti Kabab (1)","itemprice":"140","itemdiscountable":"1","created_at":1539761115206,"_id":"jY9gorZQ348gFE7z"}
+{"itemname":"128.Lassi","itemprice":"70","itemdiscountable":"0","created_at":1539765335916,"_id":"kGzSmWXTVoBzUrLl"}
+{"itemname":" 34.Chicken Boti Kabab (1)","itemprice":"130","itemdiscountable":"1","created_at":1539761065814,"_id":"kYkoO2WoHg2eN4jc"}
+{"itemname":"105.Chicken Shwarrna","itemprice":"100","itemdiscountable":"1","created_at":1539764585709,"_id":"kb0cGzKobRjEDrh6"}
+{"itemname":"Food pack190","itemprice":"190","itemdiscountable":"0","created_at":1539949056203,"_id":"kmQ2qQxmk2Kj1ugz"}
+{"itemname":"106.QIK Special Sizzling (3)","itemprice":"420","itemdiscountable":"1","created_at":1539764630692,"_id":"l5IW2gAdihO9KsQX"}
+{"itemname":"74.Vegetable Sabnam (3)","itemprice":"270","itemdiscountable":"1","created_at":1539763302860,"_id":"lQWsMTm6YrQklYrZ"}
+{"itemname":"48.Garlic Naan","itemprice":"45","itemdiscountable":"1","created_at":1539761848607,"_id":"lcL8qKDFiK0KCsAJ"}
+{"itemname":"Food pack 03(140)","itemprice":"140","itemdiscountable":"0","created_at":1539948948280,"_id":"lfGXyqgBvXz4gDEG"}
+{"itemname":"98.Egg Noodles","itemprice":"210","itemdiscountable":"1","created_at":1539764242428,"_id":"lr3C1Cs5Yi4ZktXW"}
+{"itemname":"22.Prawn Chilli (3)","itemprice":"390","itemdiscountable":"1","created_at":1539759768021,"_id":"m97JG5gOnffu5h7u"}
+{"itemname":"COMBO-1","itemprice":"180","itemdiscountable":"0","created_at":1539765459877,"_id":"mDxhiX1CuPKFvFh9"}
+{"itemname":"16.Prawn with Garlic (3)","itemprice":"355","itemdiscountable":"1","created_at":1539759575542,"_id":"miT8MXu5OM5VJoCX"}
+{"itemname":"88.Prawn Cake-6pcs","itemprice":"360","itemdiscountable":"1","created_at":1539763793358,"_id":"mrIkngFUeQxpc7vv"}
+{"itemname":"57.Chicken Corn Soup single  ","itemprice":"90","itemdiscountable":"1","created_at":1539962598664,"_id":"nbuMtkaQwJdO64wD"}
+{"itemname":"72.Beef Vegetable (3)","itemprice":"320","itemdiscountable":"1","created_at":1539763199499,"_id":"nxH0hI7zKULyiiDf"}
+{"itemname":"36.Chicken Shik Kabab","itemprice":"120","itemdiscountable":"1","created_at":1539761154479,"_id":"oY2ExAM7JfU093NL"}
+{"itemname":"103.QIK Special White Pasta","itemprice":"220","itemdiscountable":"1","created_at":1539764386476,"_id":"ozdbD4EzKmB8PLja"}
+{"itemname":"93.Chicken Cutlet-6pcs","itemprice":"280","itemdiscountable":"1","created_at":1539763949972,"_id":"ozlAjbX23iN9LhxQ"}
+{"itemname":"17.Prawn with Hot Sauce (3)","itemprice":"400","itemdiscountable":"1","created_at":1539759609094,"_id":"pMqvZTpYJoHvibq6"}
+{"itemname":"59.Hot & Sour Soup (3)","itemprice":"260","itemdiscountable":"1","created_at":1539762849988,"_id":"pV05s6je54QuxdiW"}
+{"itemname":"Food pack 250","itemprice":"250","itemdiscountable":"0","created_at":1539949068660,"_id":"pqbfKDzAnddHASG8"}
+{"itemname":"132.Cold Coffee","itemprice":"80","itemdiscountable":"0","created_at":1539765422694,"_id":"qXZOgZ1S537OLd75"}
+{"itemname":"96.Chicken Noodles (3)","itemprice":"250","itemdiscountable":"1","created_at":1539764147959,"_id":"qbNX6Zy9kJjN9Lls"}
+{"itemname":"10.Beef Chilli Onion (3)","itemprice":"400","itemdiscountable":"1","created_at":1539759273742,"_id":"qdxAU25SXBJOwGF2"}
+{"itemname":"08.Beef Masala (3)","itemprice":"420","itemdiscountable":"1","created_at":1539759221614,"_id":"quOm5s2nIJTsSbWJ"}
+{"itemname":"58.Chicken Vegetable Soup (3)","itemprice":"240","itemdiscountable":"1","created_at":1539762821196,"_id":"s2Ualukf8QUuypAc"}
+{"itemname":"107.Chicken Sizzling (3)","itemprice":"380","itemdiscountable":"1","created_at":1539764645300,"_id":"s95ef68YELt1w1AM"}
+{"itemname":"45.QIK Special Naan","itemprice":"55","itemdiscountable":"1","created_at":1539761804297,"_id":"sHuAiXo11Pmr0Q60"}
+{"itemname":"51.Chicken Spicy (3)","itemprice":"420","itemdiscountable":"1","created_at":1539762355423,"_id":"spwZ0IscwxAQ3Cdb"}
+{"itemname":"55.Tom Yurn Goong Gai (3)","itemprice":"450","itemdiscountable":"1","created_at":1539762614829,"_id":"tl8j5npYRWwURLCv"}
+{"itemname":"09.Beef Basil Leaf (3)","itemprice":"550","itemdiscountable":"1","created_at":1539759237030,"_id":"tlriWZjN7DlDR16r"}
+{"itemname":"Food pack 04(150)","itemprice":"150","itemdiscountable":"0","created_at":1539949032706,"_id":"uWJtl282RWlwBSMB"}
+{"itemname":"110.QIK Special Pizza (3)","itemprice":"700","itemdiscountable":"1","created_at":1539764717084,"_id":"uZQh89JrvcpKpXM8"}
+{"itemname":"114.Chicken Sandwich","itemprice":"50","itemdiscountable":"1","created_at":1539764907118,"_id":"umObSViNi15YjXYq"}
+{"itemname":"07.Chicken Foil Paper (3)","itemprice":"465","itemdiscountable":"1","created_at":1539759194661,"_id":"vLA9G1PoZEfgbDKj"}
+{"itemname":"41.Chicken Tandoori-Single","itemprice":"120","itemdiscountable":"1","created_at":1539761363847,"_id":"vj7mWrpZxtXQiqHn"}
+{"itemname":"131.Hot Coffee","itemprice":"45","itemdiscountable":"0","created_at":1539765415544,"_id":"w4URUycd38KO3wJX"}
+{"itemname":"129.Faluda","itemprice":"100","itemdiscountable":"0","created_at":1539765357028,"_id":"wChj78fV1osCBWAc"}
+{"itemname":"13.Beef with Ginger (3)","itemprice":"380","itemdiscountable":"1","created_at":1539759460366,"_id":"wY51GkWZlzlYfMuu"}
+{"itemname":"112.California Pizza-Single","itemprice":"500","itemdiscountable":"1","created_at":1539764855388,"_id":"wmGoM9CLEaR8YLmg"}
+{"itemname":"62.Mixed Fried Rice (3)","itemprice":"220","itemdiscountable":"1","created_at":1539762945058,"_id":"wwjJi4W1UJP1OwrE"}
+{"itemname":"33.Mutton Onion (3)","itemprice":"440","itemdiscountable":"1","created_at":1539761018462,"_id":"xC7Yrhfcc7w8zPl6"}
+{"itemname":"97.Prawn Noodles (3)","itemprice":"270","itemdiscountable":"1","created_at":1539764226255,"_id":"xk9m7SIYYAkXi5oB"}
+{"itemname":"42.QIK Special Paratha","itemprice":"45","itemdiscountable":"1","created_at":1539761415119,"_id":"xljLcxwXiLrzaaDr"}
+{"itemname":"05.Chicken Masala-দেশী (3)","itemprice":"400","itemdiscountable":"1","created_at":1539759070318,"_id":"ybzofor4tyXMhqxg"}
+{"itemname":"66.Garlic Fried Rice (3)","itemprice":"280","itemdiscountable":"1","created_at":1539763019124,"_id":"zzq3l9oV5dAWc1kL"}
