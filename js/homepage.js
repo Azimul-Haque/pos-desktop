@@ -44,7 +44,7 @@ function getDataToSync() {
     //   }
     // });
     $.ajax({
-      url: "http://queenislandkitchen.com/pos_api/syncapi.php",
+      url: "mysitename.com/pos_api/syncapi.php",
       type: "POST",
       data: JSON.stringify(receipts),
       success: function(response) {
