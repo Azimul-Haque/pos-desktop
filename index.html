@@ -39,15 +39,15 @@
                   <span id="headerClock" style="margin: 0px 0px 0px 5px;"></span>                                                    
                 </li>
                 <script>
-                document.getElementById("headerDate").innerHTML = new Date().toDateString();
-                var myVar = setInterval(function() {
-                  myTimer();
-                }, 1000);
+                  document.getElementById("headerDate").innerHTML = new Date().toDateString();
+                  var myVar = setInterval(function() {
+                    myTimer();
+                  }, 1000);
 
-                function myTimer() {
-                  var d = new Date();
-                  document.getElementById("headerClock").innerHTML = d.toLocaleTimeString();
-                }
+                  function myTimer() {
+                    var d = new Date();
+                    document.getElementById("headerClock").innerHTML = d.toLocaleTimeString();
+                  }
                 </script>
               </div>
               <table class="highlight table table-condensed" id="receipttable">
@@ -65,7 +65,8 @@
                       <tfoot id="receiptFoot">
                         
                         <tr>
-                          <td colspan="2" class="rightalign">Total:</td>
+                          <td class="leftalign">Point: <span id="totalPoint"></span></td>
+                          <td class="rightalign">Total:</td>
                           <td id="totalPrice"></td>
                           <td></td>
                         </tr>
@@ -82,7 +83,8 @@
                       </tfoot>
                     </table>
                     <div class="input-field">
-                      <input type="text" id="customQtyText" placeholder="QTY" style="width: 60px; float: right;">
+                      <input type="text" id="customQtyText" placeholder="QTY" style="width: 50px; float: right; margin-left:3px;">
+                      <input type="text" id="tableNoText" placeholder="Table No" style="width: 80px; float: right;">
                     </div>
                     Discountable Price: <span id="discountyes">0</span><br/>
                     Not Discountable Price: <span id="discountno">0</span>
@@ -91,9 +93,11 @@
                           var j = r.parentNode.parentNode.rowIndex - 1;
                           // first get the price then delete...
                           itemPrice = parseInt(document.getElementById("price"+id).innerHTML);
+                          itemPoint = parseInt(document.getElementById("point"+id).innerHTML);
                           document.getElementById("dynamicItems").deleteRow(j);
                           document.getElementById("dynamicItemsPrint").deleteRow(j);
-
+                          
+                          // update the price
                           itemPrice = parseInt(itemPrice);
                           console.log('Deleting: '+itemPrice);
                           totalPrice = parseInt($("#totalPrice").text());
@@ -105,7 +109,18 @@
                             $("#totalPrice").html(totalPrice);
                             $("#totalPriceP").html(totalPrice);
                           }
-                          console.log(totalPrice);
+                          // update the point
+                          itemPoint = parseInt(itemPoint);
+                          totalPoint = parseInt($("#totalPoint").text());
+                          totalPoint = totalPoint - itemPoint;
+                          $("#totalPoint").html(totalPoint);
+                          $("#totalPointP").html(totalPoint);
+                          if ($('#dynamicItems > tr').length == 0){
+                            totalPoint = 0;
+                            $("#totalPoint").html(totalPoint);
+                            $("#totalPointP").html(totalPoint);
+                          }
+                          console.log(totalPoint);
 
                           // update the discountable
                           var discountyesid = parseInt($("#discountyes").text());
@@ -137,11 +152,13 @@
                       <span>Phone: 01704-828518</span><br>
                       <span>queenislandkitchen.com</span><br>
                     </center>
-                    <span style="border: 1px dotted #000000; margin: 5px; float: right;width: 25mm;">QTY: <span id="customQty"></span></span><br><br><br/>
+                    <span style="border: 1px dotted #000000; margin: 2px; float: left;width: 30mm;">Table No: <span id="tableNo"></span></span>
+                    <span style="border: 1px dotted #000000; margin: 2px; float: right;width: 25mm;">QTY: <span id="customQty"></span></span><br>
+                    <span style="font-size: 20px;">☆☆☆☆☆</span><br>
                     <span>Receipt # <span id="receiptnoP"></span></span><br>
                     <span id="dateTimeP"></span><br>
                     <script>
-                      document.getElementById("dateTimeP").innerHTML = dateTime = dateFormat(new Date(), "mmmm dd, yyyy, HH:MM TT");;
+                      document.getElementById("dateTimeP").innerHTML  = dateFormat(new Date(), "mmmm dd, yyyy, HH:MM TT");
                     </script>
                     <table width="100%">
                       <thead>
@@ -158,20 +175,22 @@
                           <td colspan="3" style="border-bottom: 1px dotted black;"></td>
                         </tr>
                         <tr>
-                          <td colspan="2" class="rightalign">Total:</td>
-                          <td id="totalPriceP" class="rightalign"></td>
+                          <td align="left">Mobile:</td>
+                          <td class="rightalign bold">Total:</td>
+                          <td id="totalPriceP" class="rightalign bold"></td>
                         </tr>
                         <tr>
-                          <td colspan="2" class="rightalign">Discount(%):</td>
-                          <td id="discountP" class="rightalign"></td>
+                          <td colspan="2" class="rightalign bold">Discount(%):</td>
+                          <td id="discountP" class="rightalign bold"></td>
                         </tr>
                         <tr>
-                          <td colspan="2" class="rightalign">Total Price:</td>
-                          <td id="totalPriceFinalP" class="rightalign"></td>
+                          <td colspan="2" class="rightalign bold">Total Price:</td>
+                          <td id="totalPriceFinalP" class="rightalign bold"></td>
                         </tr>
                       </tfoot>
                     </table>
                     <br>
+                    <center>Points earned: <span id="totalPointP">0</span></center>
                     <center>*** FEEL THE FOOD ***</center>
                   </section>
                 </div>
@@ -187,7 +206,7 @@
                             <input id="searchItem" type="text" placeholder="Search">                                                  
                           </li>
                         </span><br/>
-                      <div class="row" id="itemsinhomepage" style="height: 480px; overflow-y: scroll;">
+                      <div class="row" id="itemsinhomepage" style="height: 470px; overflow-y: scroll;">
                       </div>
                     </div>
                   </div>
@@ -211,6 +230,7 @@
       <script>if (window.module) module = window.module;</script>
       <script>
       $(document).ready(function(){
+        
         $("#printreceipt").click(function(){
           var itemsArrayforRD = [];
           $(".itemJson").each(function(){
@@ -221,7 +241,8 @@
           totalPriceforRD = parseInt($("#totalPrice").html());
           discountforRD = parseInt($("#discount").val());
           customQtyText = parseInt($("#customQtyText").val());
-          discountedTotal = totalPriceforRD - (totalPriceforRD * (discountforRD/100));
+          tableNoText = parseInt($("#tableNoText").val());
+          discountedTotal = parseInt($("#totalPriceFinal").html());;
           if(isNaN(totalPriceforRD)) {
             M.toast({html: 'Select an Item first!'});
           } else {
@@ -231,30 +252,34 @@
               if(isNaN(customQtyText)) {
                 M.toast({html: 'Set a QTY! If none, just write 0'});
               } else {
-                var receiptno = Date.now();
-                var receiptData = {
-                                  "items":itemsArrayforRD
-                                  }
-                console.log(receiptData);
-                $("#receiptnoP").html(receiptno);
-                $("#printArea").print({
-                        globalStyles: false,
-                        mediaPrint: false,
-                        stylesheet: 'css/styles.css',
-                        noPrintSelector: ".noPrint",
-                        iframe: true,
-                        append: null,
-                        prepend: null,
-                        manuallyCopyFormValues: true,
-                        deferred: $.Deferred(),
-                        timeout: 750,
-                        title: 'Test Rifat',
-                        doctype: '<!doctype html>'
-                });
-                $("#progress").addClass("progress");
-                database.addReceipt(receiptno, receiptData, totalPriceforRD, discountforRD, discountedTotal, customQtyText);
-                M.toast({html: 'Added data to the database!'})
-                setTimeout(function(){ location.reload(); }, 1000);
+                if(isNaN(tableNoText)) {
+                  M.toast({html: 'Set a Table No! If none, just write 0'});
+                } else {
+                  var receiptno = Date.now();
+                  var receiptData = {
+                                    "items":itemsArrayforRD
+                                    }
+                  console.log(receiptData);
+                  $("#receiptnoP").html(receiptno);
+                  $("#printArea").print({
+                          globalStyles: false,
+                          mediaPrint: false,
+                          stylesheet: 'css/styles.css',
+                          noPrintSelector: ".noPrint",
+                          iframe: true,
+                          append: null,
+                          prepend: null,
+                          manuallyCopyFormValues: true,
+                          deferred: $.Deferred(),
+                          timeout: 750,
+                          title: 'Test Rifat',
+                          doctype: '<!doctype html>'
+                  });
+                  $("#progress").addClass("progress");
+                  database.addReceipt(receiptno, receiptData, totalPriceforRD, discountforRD, discountedTotal, customQtyText, tableNoText);
+                  M.toast({html: 'Added data to the database!'})
+                  setTimeout(function(){ location.reload(); }, 1000);
+                }
               }
             }
           }
@@ -272,20 +297,30 @@
         });
       </script>
       <script>
-      function incrItemPrice(qty, price, name, discountable) {
+      function incrItemPrice(qty, price, point, name, discountable) {
         var newqty = document.getElementById('qty'+qty).value;
         var newqtyP = document.getElementById('qtyP'+qty).value;
         var oldPrice = document.getElementById('price'+qty).innerHTML;
+        var oldPoint = document.getElementById('point'+qty).innerHTML;
         if(newqty == '') {
           newqty = 0;
         }
         newqty = parseInt(newqty);
         oldPrice = parseInt(oldPrice);
+        oldPoint = parseInt(oldPoint);
         price = parseInt(price);
+        if(point == undefined) {
+          point = 0;
+        } else {
+          point = parseInt(point);
+        }
         var newPrice = price * newqty;
+        var newPoint = point * newqty;
         document.getElementById('price'+qty).innerHTML = newPrice;
+        document.getElementById('point'+qty).innerHTML = newPoint;
         document.getElementById('qtyP'+qty).innerHTML = newqty;
         document.getElementById('priceP'+qty).innerHTML = newPrice;
+        document.getElementById('pointP'+qty).innerHTML = newPoint;
         document.getElementById('priceJson'+qty).value = name + "," + newqty + "," + newPrice;
 
         // update the price
@@ -294,6 +329,13 @@
         $("#totalPrice").html(totalPrice);
         $("#totalPriceP").html(totalPrice);
         console.log(totalPrice);
+        
+        // update the point
+        var totalPoint = parseInt($("#totalPoint").text());
+        totalPoint = totalPoint - oldPoint + newPoint;
+        $("#totalPoint").html(totalPoint);
+        $("#totalPointP").html(totalPoint);
+        console.log(totalPoint);
 
         // update the discountable
         var discountyesid = parseInt($("#discountyes").text());
@@ -312,7 +354,10 @@
       $(document).ready(function(){
         $('#customQtyText').keyup(function() {
           $('#customQty').text($(this).val());
-        })
+        });
+        $('#tableNoText').keyup(function() {
+          $('#tableNo').text($(this).val());
+        });
       });
       </script>
       <script>

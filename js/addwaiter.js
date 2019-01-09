@@ -11,21 +11,19 @@ window.onload = function() {
     // Retrieve the input fields
     var itemname = document.getElementById('itemname');
     var itemprice = document.getElementById('itemprice');
-    var itempoint = document.getElementById('itempoint');
     var itemdiscountable = document.getElementById('itemdiscountable');
 
     // Save the item in the database
-    if((itemname.value == '') | (itemprice.value == '') | (itempoint.value == '') | (itemdiscountable.value == '')) {
+    if((itemname.value == '') | (itemprice.value == '') | (itemdiscountable.value == '')) {
       M.toast({html: 'কোন ঘর খালি রাখা যাবে না!'});
       //console.log('কিছুতো লেখেন!');
     } else {
-      database.addItem(itemname.value, itemprice.value, itempoint.value, itemdiscountable.value);
+      database.addItem(itemname.value, itemprice.value, itemdiscountable.value);
     }
 
     // Reset the input fields
     itemname.value = '';
     itemprice.value = '';
-    itempoint.value = '';
     itemdiscountable.value = '';
     // Repopulate the table
     populateTable();
@@ -38,7 +36,6 @@ window.onload = function() {
     var itemid = document.getElementById('itemidEdit');
     var itemname = document.getElementById('itemnameEdit');
     var itemprice = document.getElementById('itempriceEdit');
-    var itempoint = document.getElementById('itempointEdit');
     var itemdiscountable = document.getElementById('itemdiscountableEdit');
 
     // Save the item in the database
@@ -47,14 +44,13 @@ window.onload = function() {
       //console.log('কিছুতো লেখেন!');
     } else {
       //console.log(itemid.value + itemname.value + itemprice.value + itemdiscountable.value);
-      database.updateItem(itemid.value, itemname.value, itemprice.value, itempoint.value, itemdiscountable.value);
+      database.updateItem(itemid.value, itemname.value, itemprice.value, itemdiscountable.value);
       $('.modal').modal('close', "#modalEditItem");
     }
     
     // Reset the input fields
     itemname.value = '';
     itemprice.value = '';
-    itempoint.value = '';
     itemdiscountable.value = '';
     // Repopulate the table
     populateTable();
@@ -69,13 +65,9 @@ function populateTable() {
     // Generate the table body
     var tableBody = '';
     for (i = 0; i < items.length; i++) {
-      if(items[i].itempoint == undefined) {
-        items[i].itempoint = 0;
-      }
       tableBody += '<tr>';
       tableBody += '  <td>' + items[i].itemname + '</td>';
       tableBody += '  <td>' + items[i].itemprice + '/-</td>';
-      tableBody += '  <td>' + items[i].itempoint + '</td>';
       if(items[i].itemdiscountable == 0) {
         tableBody += '  <td> NO </td>';
       } else {

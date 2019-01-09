@@ -4,12 +4,13 @@ itemdb = new Datastore({ filename: 'db/items.db', autoload: true });
 receiptdb = new Datastore({ filename: 'db/receipts.db', autoload: true });
 
 // Adds an item
-exports.addItem = function(itemname, itemprice, itemdiscountable) {
+exports.addItem = function(itemname, itemprice, itempoint, itemdiscountable) {
 
   // Create the item object
   var item = {
     "itemname": itemname,
     "itemprice": itemprice,
+    "itempoint": itempoint,
     "itemdiscountable": itemdiscountable,
     "created_at": Date.now(),
   };
@@ -17,6 +18,7 @@ exports.addItem = function(itemname, itemprice, itemdiscountable) {
   // Save the item to the database
   itemdb.insert(item, function(err, newDoc) {
     // Do nothing
+    M.toast({html: 'Added!'});
   });
 };
 
@@ -55,11 +57,16 @@ exports.findItem = function(id) {
     if(document.getElementById(doc._id)) {
       var oldQty = document.getElementById('qty'+doc._id).value;
       var oldPrice = document.getElementById('price'+doc._id).innerHTML;
+      var oldPoint = document.getElementById('point'+doc._id).innerHTML;
       if(oldQty == '') {
         oldQty = 0;
       }
+      if(isNaN(oldPoint)) {
+        oldPoint = 0;
+      }
       oldQty = parseInt(oldQty);
       oldPrice = parseInt(oldPrice);
+      oldPoint = parseInt(oldPoint);
 
       var newQty = oldQty + 1;
       document.getElementById('qty'+doc._id).value = newQty;
@@ -67,6 +74,14 @@ exports.findItem = function(id) {
       var newPrice = oldPrice + parseInt(doc.itemprice);
       document.getElementById('price'+doc._id).innerHTML = newPrice;
       document.getElementById('priceP'+doc._id).innerHTML = newPrice;
+
+      if(doc.itempoint == undefined) {
+        doc.itempoint = 0;
+      }
+      var newPoint = oldPoint + parseInt(doc.itempoint);
+      document.getElementById('point'+doc._id).innerHTML = newPoint;
+      document.getElementById('pointP'+doc._id).innerHTML = newPoint;
+
       document.getElementById('priceJson'+doc._id).value = doc.itemname + "," + newQty + "," + newPrice;
     } else {
       var cell1 = row.insertCell(0);
@@ -80,10 +95,13 @@ exports.findItem = function(id) {
       var cell3P = rowP.insertCell(2);
       cell3P.className = "rightalign";
 
-      cell1.innerHTML = "<span id='"+doc._id+"'>" + doc.itemname + "</span>";
-      cell1P.innerHTML = "<span id='P"+doc._id+"' style='font-size: 11px;'>" + doc.itemname + "</span>";
+      if(doc.itempoint == undefined) {
+        doc.itempoint = 0;
+      }
+      cell1.innerHTML = "<span id='"+doc._id+"'>" + doc.itemname +": </span><span id='point"+doc._id+"' class='classPoint'>"+ doc.itempoint + "</span>";
+      cell1P.innerHTML = "<span id='P"+doc._id+"' style='font-size: 11px;'>" + doc.itemname +": </span><span id='pointP"+doc._id+"'>"+ doc.itempoint + "</span>";
 
-      cell2.innerHTML = "<input type='number' min='1' value='1' id='qty"+doc._id+"' onchange='incrItemPrice(\"" + doc._id + "\",\"" + doc.itemprice + "\", \"" + doc.itemname + "\", \"" + doc.itemdiscountable + "\")' style='width: 35px !important; height: 20px !important;'>";
+      cell2.innerHTML = "<input type='number' min='1' value='1' id='qty"+doc._id+"' onchange='incrItemPrice(\"" + doc._id + "\",\"" + doc.itemprice + "\", \"" + doc.itempoint + "\", \"" + doc.itemname + "\", \"" + doc.itemdiscountable + "\")' style='width: 35px !important; height: 20px !important;'>";
       cell2P.innerHTML = "<span id='qtyP"+doc._id+"'>1</span>";
       
       cell3.innerHTML = "<span id='price"+doc._id+"' class='classPrice'>"+ doc.itemprice +"</span><input type='hidden' id='priceJson"+doc._id+"' class='itemJson' value='"+doc.itemname+","+ 1 +","+doc.itemprice+"'>";
@@ -104,6 +122,12 @@ function sumOfColumns(){
       $("#totalPrice").html(totalPrice);
       $("#totalPriceP").html(totalPrice);
   });
+  var totalPoint = 0;
+  $(".classPoint").each(function(){
+      totalPoint += parseInt($(this).html());
+      $("#totalPoint").html(totalPoint);
+      $("#totalPointP").html(totalPoint);
+  });
   console.log(totalPrice);
 }
 
@@ -114,20 +138,26 @@ exports.editItem = function(id) {
     document.getElementById('itemnameEdit').value = doc.itemname;
     document.getElementById('itempriceEdit').value = doc.itemprice;
     document.getElementById('itemdiscountableEdit').value = doc.itemdiscountable;
+    console.log(doc.itempoint);
+    if(doc.itempoint != undefined) {
+      document.getElementById('itempointEdit').value = doc.itempoint;
+    } else {
+      document.getElementById('itempointEdit').value = 0;
+    }
   });
 }
 
 // Update an item
-exports.updateItem = function(itemid, itemname, itemprice, itemdiscountable) {
+exports.updateItem = function(itemid, itemname, itemprice, itempoint, itemdiscountable) {
   itemdb.update({ _id: itemid }, 
-    { $set: { itemname: itemname, itemprice: itemprice, itemdiscountable: itemdiscountable } }, 
+    { $set: { itemname: itemname, itemprice: itemprice, itempoint: itempoint, itemdiscountable: itemdiscountable } }, 
     { multi: true }, function (err, numReplaced) {
     // numReplaced = 3
     console.log(numReplaced);
     if(numReplaced > 0) {
       M.toast({html: 'Successfully updated!'});
     } else {
-      M.toast({html: 'Problem occured! Try Lated.'});
+      M.toast({html: 'Problem occured! Try Later.'});
     }
     
   });
@@ -163,7 +193,7 @@ function formatMonth(date) {
   return [month, year].join('-');
 }
 
-exports.addReceipt = function(receiptno, receiptData, total, discount, discountedTotal, customQty) {
+exports.addReceipt = function(receiptno, receiptData, total, discount, discountedTotal, customQty, tableNo) {
   // Create the receipt object
   var receipt = {
     "receiptno": receiptno,
@@ -172,6 +202,7 @@ exports.addReceipt = function(receiptno, receiptData, total, discount, discounte
     "discount": discount,
     "discounted_total": discountedTotal,
     "customQty": customQty,
+    "tableNo": tableNo,
     "created_at": Date.now(),
   };
 
@@ -204,6 +235,7 @@ exports.findReceipt = function(receiptno) {
       receipttable += '  <td class="rightalign">' + doc.receiptdata.items[i].price + '</td>';
       receipttable += '</tr>';
     }
+    document.getElementById('tableNo').innerHTML = doc.tableNo;
     document.getElementById('customQty').innerHTML = doc.customQty;
     document.getElementById('receiptnoRP').innerHTML = doc.receiptno;
     document.getElementById('totalPriceRP').innerHTML = doc.total;
