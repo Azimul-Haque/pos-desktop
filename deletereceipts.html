@@ -1,0 +1,44 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Delete Receipts (Before 10 days)</title>
+  <!--Import Google Icon Font-->
+  <link href="css/materialize-icon.css" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+  <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script type="text/javascript" src="js/deletereceipts.js"></script>
+  <script>if (window.module) module = window.module;</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+  <div class="container">
+    <h3>Delete Receipts (Before 10 days)</h3>
+    <p>Are you sure to delete receipts older than 10 days?</p>
+    <br/>
+    <a class="waves-effect waves-light btn" id="deletereceipts">Yes, Delete</a>
+  </div>
+
+
+  <script type="text/javascript">
+    var remote = require('electron').remote;
+    document.addEventListener('keydown', function (e) {
+      if (e.which === 123) {
+        remote.getCurrentWindow().webContents.openDevTools();
+      } else if (e.which === 116) {
+        location.reload();
+      }
+    });
+  </script>
+  <script>
+  $(document).ready(function(){
+    $("#deletereceipts").click(function(){
+      deleteReceiptsBeforeTenDays();
+      M.toast({html: 'Deleted successfully!'});
+    });
+  });
+  </script>
+</body>
+</html>

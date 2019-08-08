@@ -2,6 +2,7 @@ const database = require('./js/database');
 
 window.onload = function() {
   populateTable();
+  deleteOldReceiptsRegularly();
 }
 
 function populateTable() {
@@ -27,6 +28,11 @@ function findItem(id) {
 
 function findItemPrice(id) {
     database.findItemPrice(id);
+}
+
+function deleteOldReceiptsRegularly() {
+  database.deleteReceipts();
+  console.log('cleared');
 }
 
 // function to supply the data to sync data online...

@@ -31,6 +31,12 @@ menuTemplate = [
         click: () => {
           addItem()
         }
+      },
+      {
+        label: 'Delete Receipts',
+        click: () => {
+          deleteReceipts()
+        }
       }
     ]
   },
@@ -128,7 +134,6 @@ function openAboutWindow() {
 }
 // Opens the add item window
 function addItem() {
-
   let aboutWindow = new BrowserWindow({
     parent: mainWindow,
     modal: true,
@@ -147,9 +152,28 @@ function addItem() {
     aboutWindow.show()
   })
 }
+// Opens the delete receipts window
+function deleteReceipts() {
+  let aboutWindow = new BrowserWindow({
+    parent: mainWindow,
+    modal: true,
+    show: false,
+    width: 600,
+    height: 350,
+    icon: path.join(__dirname, 'assets/icon/icon.ico'),
+  })
+  aboutWindow.loadURL(url.format({
+    pathname: path.join(__dirname, 'deletereceipts.html'),
+    protocol: 'file:',
+    slashes: true
+  }))
+  aboutWindow.setMenu(null)
+  aboutWindow.once('ready-to-show', () => {
+    aboutWindow.show()
+  })
+}
 // Opens the add waiter window
 function addWaiter() {
-
   let aboutWindow = new BrowserWindow({
     parent: mainWindow,
     modal: true,

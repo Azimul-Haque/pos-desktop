@@ -93,7 +93,7 @@ exports.findItem = function(id) {
       var cell2P = rowP.insertCell(1);
       cell2P.className = "centeralign";
       var cell3P = rowP.insertCell(2);
-      cell3P.className = "rightalign";
+      cell3P.className = "rightalign bold";
 
       if(doc.itempoint == undefined) {
         doc.itempoint = 0;
@@ -170,6 +170,22 @@ exports.deleteItem = function(id) {
   });
 }
 
+// Deletes receipts older than 10 days
+exports.deleteReceipts = function() {
+  Date.prototype.addDays = function(days) {
+    var date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date;
+  }
+  var dateTenDaysBefore = new Date();
+  dateTenDaysBefore.setHours(0,0,0,0);
+  dateTenDaysBefore = dateTenDaysBefore.addDays(-11); // 11 instead of 10, one day buffer
+  // console.log(dateTenDaysBefore.getTime());
+  receiptdb.remove({ created_at: { $lt: dateTenDaysBefore.getTime() }}, { multi: true }, function (err, numRemoved) {
+    // Do nothing
+  });
+}
+
 
 // Adds an receipt
 function formatDate(date) {
@@ -232,7 +248,7 @@ exports.findReceipt = function(receiptno) {
       receipttable += '<tr>';
       receipttable += '  <td style="font-size: 11px;">' + doc.receiptdata.items[i].name + '</td>';
       receipttable += '  <td>' + doc.receiptdata.items[i].qty + '</td>';
-      receipttable += '  <td class="rightalign">' + doc.receiptdata.items[i].price + '</td>';
+      receipttable += '  <td class="rightalign bold">' + doc.receiptdata.items[i].price + '</td>';
       receipttable += '</tr>';
     }
     document.getElementById('tableNo').innerHTML = doc.tableNo;

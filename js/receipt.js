@@ -66,9 +66,6 @@ function getTodaysCollection() {
 function showDetailedReceipt(receiptno) {
   database.findReceipt(receiptno);
 }
-
-
-
     
 
 
