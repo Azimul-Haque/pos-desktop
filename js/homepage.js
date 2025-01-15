@@ -42,6 +42,7 @@ function getDataToSync() {
     // console.log(receipts[0]['receiptdata']['items']);
     $.ajax({
       url: "http://localhost/pos_api/syncapi_local.php",
+      // url: "https://queenislandkitchen.com/pos_api/syncapi.php",
       type: "POST",
       data: JSON.stringify(receipts),
       success: function(response) {
